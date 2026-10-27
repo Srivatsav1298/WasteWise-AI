@@ -1,0 +1,67 @@
+version: 2
+
+# Sources are warehouse-resident tables published by the silver layer
+# (ingestion/silver.py). Raw tables keep the delivered CSV values as-is
+# (all-varchar fidelity), silver tables are typed, deduplicated and contracted.
+sources:
+  - name: silver
+    description: "Validated, typed and deduplicated delivery layer."
+    schema: silver
+    loaded_at_field: _ingested_at
+    freshness:
+      warn_after: {count: 12, period: hour}
+      error_after: {count: 3, period: day}
+    meta:
+      contract_version: "2.0.0"
+    tables:
+      - name: sales
+        description: "Point-of-sale unit counts. Grain: one row per sale line."
+        columns:
+          - name: sale_id
+            data_tests: [not_null, unique]
+          - name: units_sold
+            data_tests: [not_null, non_negative]
+          - name: _ingested_at
+            data_tests: [not_null]
+      - name: inventory_snapshots
+        description: "End-of-day stock on hand. Grain: location + date + ingredient."
+        columns:
+          - name: quantity_on_hand
+            data_tests: [not_null, non_negative]
+      - name: waste_events
+        description: "Recorded waste. Grain: one row per waste event."
+        columns:
+          - name: waste_id
+            data_tests: [not_null, unique]
+          - name: quantity
+            data_tests: [not_null, non_negative]
+          - name: reason
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ['spoilage', 'overproduction', 'trim', 'expired', 'damaged', 'other']
+      - name: events
+        description: "External demand events. Grain: one row per event."
+        columns:
+          - name: event_id
+            data_tests: [not_null, unique]
+          - name: city
+            data_tests: [not_null]
+      - name: products
+        description: "Product master. Grain: one row per product."
+        columns:
+          - name: product_id
+            data_tests: [not_null, unique]
+      - name: ingredients
+        description: "Ingredient master. Grain: one row per ingredient."
+        columns:
+          - name: ingredient_id
+            data_tests: [not_null, unique]
+          - name: unit_cost
+            data_tests: [not_null, non_negative]
+      - name: locations
+        description: "Location master. Grain: one row per cafe."
+        columns:
+          - name: location_id
+            data_tests: [not_null, unique]

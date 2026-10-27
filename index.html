@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WasteWiseAI · Food Waste Intelligence</title>
+  <meta name="description" content="Food waste intelligence with a published data trust layer: every number states how far it can be trusted." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="#/overview">
+        <span class="brand-mark" aria-hidden="true">WW</span>
+        <span class="brand-text">
+          <span class="brand-name">WasteWiseAI</span>
+          <span class="brand-sub">Food waste intelligence</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a class="nav-item" data-route="overview" href="#/overview">Overview</a>
+        <a class="nav-item" data-route="waste-risk" href="#/waste-risk">Waste risk</a>
+        <a class="nav-item" data-route="demand-events" href="#/demand-events">Demand &amp; events</a>
+        <a class="nav-item" data-route="simulator" href="#/simulator">What-if</a>
+        <a class="nav-item" data-route="trust" href="#/trust">Data trust</a>
+        <a class="nav-item" data-route="lineage" href="#/lineage">Pipeline</a>
+      </nav>
+
+      <div class="masthead-status" id="publish-badge" role="status" aria-live="polite">
+        <span class="dot dot-wait" aria-hidden="true"></span>
+        <span class="masthead-status-text">Loading trust status</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="rule" aria-hidden="true"></div>
+
+  <main id="main" class="shell" tabindex="-1">
+    <div id="view" class="view" aria-live="polite"></div>
+  </main>
+
+  <footer class="footer">
+    <p>
+      Synthetic delivery data. Every figure on this site is published by the warehouse and
+      carries a trust state from the Data Trust Engine.
+    </p>
+    <p class="footer-meta">
+      <span id="footer-run"></span>
+    </p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="charts.js"></script>
+  <script src="views.js"></script>
+  <script src="views-ops.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

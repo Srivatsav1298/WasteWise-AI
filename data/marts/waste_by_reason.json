@@ -1,0 +1,57 @@
+[
+  {
+    "waste_reason": "damaged",
+    "avoidability": "other",
+    "prevention_lever": "Review handling and storage procedure",
+    "waste_quantity": 8.11,
+    "total_cost": 1633.67,
+    "waste_event_count": 15,
+    "ingredient_count": 7,
+    "location_count": 3,
+    "demand_coverage": 1
+  },
+  {
+    "waste_reason": "expired",
+    "avoidability": "avoidable",
+    "prevention_lever": "Review shelf life assumptions and date labelling",
+    "waste_quantity": 18.56,
+    "total_cost": 3999.31,
+    "waste_event_count": 24,
+    "ingredient_count": 7,
+    "location_count": 3,
+    "demand_coverage": 1
+  },
+  {
+    "waste_reason": "overproduction",
+    "avoidability": "potentially_avoidable",
+    "prevention_lever": "Size production to forecast demand, not to traffic",
+    "waste_quantity": 133.52,
+    "total_cost": 24935.49,
+    "waste_event_count": 48,
+    "ingredient_count": 8,
+    "location_count": 3,
+    "demand_coverage": 1
+  },
+  {
+    "waste_reason": "spoilage",
+    "avoidability": "avoidable",
+    "prevention_lever": "Reduce order size, tighten first-expiry-first-out",
+    "waste_quantity": 113.93,
+    "total_cost": 18911.62,
+    "waste_event_count": 99,
+    "ingredient_count": 8,
+    "location_count": 3,
+    "demand_coverage": 1
+  },
+  {
+    "waste_reason": "trim",
+    "avoidability": "other",
+    "prevention_lever": "Track trim rate as a yield KPI, not as waste",
+    "waste_quantity": 22.82,
+    "total_cost": 3766.82,
+    "waste_event_count": 55,
+    "ingredient_count": 8,
+    "location_count": 3,
+    "demand_coverage": 1
+  }
+]

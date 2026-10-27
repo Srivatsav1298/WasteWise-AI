@@ -1,0 +1,23 @@
+[
+  {
+    "location_key": "1b70d06173ed26cca7b855cd8e4fc69f",
+    "location_id": "bergen_kai",
+    "location_name": "Fjord & Bean Bergen",
+    "city": "Bergen",
+    "region_code": "NO-46"
+  },
+  {
+    "location_key": "df1ac5d955f4c6f38b4a0b20da9c54d3",
+    "location_id": "oslo_central",
+    "location_name": "Fjord & Bean Central",
+    "city": "Oslo",
+    "region_code": "NO-03"
+  },
+  {
+    "location_key": "fecf349a5d57fd7f4171c8e4e5b04e47",
+    "location_id": "oslo_deck",
+    "location_name": "Fjord & Bean Bar",
+    "city": "Oslo",
+    "region_code": "NO-03"
+  }
+]

@@ -1,0 +1,153 @@
+[
+  {
+    "metric_key": "avoidable_cost_share",
+    "metric_name": "Avoidable cost share",
+    "layer": "marts",
+    "source_model": "mart_food_loss_summary",
+    "definition": "Share of waste cost whose reason is classified avoidable or potentially avoidable.",
+    "numerator": "sum(estimated_cost where avoidability_flag = 1)",
+    "denominator": "sum(estimated_cost)",
+    "unit": "percent",
+    "measurement_type": "derived",
+    "trust_states_allowed": [
+      "measured",
+      "partial"
+    ],
+    "owner": "ops analytics",
+    "caveat": "Avoidability is a policy classification maintained in dim_waste_reason.",
+    "published": true,
+    "display_in_dashboard": true
+  },
+  {
+    "metric_key": "demand_lift_pct",
+    "metric_name": "Demand lift around events",
+    "layer": "marts",
+    "source_model": "mart_demand_events",
+    "definition": "Change in average daily units sold in the 7 days around an event versus the 17 days before it.",
+    "numerator": "window_units_sold / 7",
+    "denominator": "baseline_daily_units",
+    "unit": "percent",
+    "measurement_type": "derived",
+    "trust_states_allowed": [
+      "measured"
+    ],
+    "owner": "demand planning",
+    "caveat": "Measured lift only. Forward-looking events carry no lift value. The demand index counts units sold, so it compares like with like across mixed products.",
+    "published": true,
+    "display_in_dashboard": true
+  },
+  {
+    "metric_key": "expected_attendance",
+    "metric_name": "Expected attendance",
+    "layer": "facts",
+    "source_model": "fct_demand_events",
+    "definition": "Organiser estimate of event attendance.",
+    "numerator": "expected_attendance",
+    "denominator": null,
+    "unit": "people",
+    "measurement_type": "estimated",
+    "trust_states_allowed": [
+      "measured",
+      "partial",
+      "unverified"
+    ],
+    "owner": "demand planning",
+    "caveat": "An estimate, not a measurement. Confidence is carried per event.",
+    "published": true,
+    "display_in_dashboard": true
+  },
+  {
+    "metric_key": "recommended_order_qty",
+    "metric_name": "Recommended order quantity",
+    "layer": "marts",
+    "source_model": "mart_purchase_plan",
+    "definition": "Cover days of average demand minus stock on hand.",
+    "numerator": "avg_daily_demand * cover_days",
+    "denominator": "stock_on_hand",
+    "unit": "units",
+    "measurement_type": "estimated",
+    "trust_states_allowed": [
+      "measured",
+      "partial"
+    ],
+    "owner": "purchasing",
+    "caveat": "Planning heuristic. Not a forecast and not an order commitment.",
+    "published": true,
+    "display_in_dashboard": true
+  },
+  {
+    "metric_key": "units_sold",
+    "metric_name": "Units sold",
+    "layer": "facts",
+    "source_model": "fct_sales",
+    "definition": "Units of a product sold, as reported by the point-of-sale system.",
+    "numerator": "sum(units_sold)",
+    "denominator": null,
+    "unit": "units",
+    "measurement_type": "measured",
+    "trust_states_allowed": [
+      "measured"
+    ],
+    "owner": "ops",
+    "caveat": "Point-of-sale system of record.",
+    "published": true,
+    "display_in_dashboard": false
+  },
+  {
+    "metric_key": "waste_cost_at_risk",
+    "metric_name": "Waste cost at risk",
+    "layer": "marts",
+    "source_model": "mart_food_loss_summary",
+    "definition": "Value of avoidable recorded waste priced at purchase-unit cost.",
+    "numerator": "sum(estimated_cost where avoidability_flag = 1)",
+    "denominator": null,
+    "unit": "NOK",
+    "measurement_type": "derived",
+    "trust_states_allowed": [
+      "measured",
+      "partial"
+    ],
+    "owner": "ops analytics",
+    "caveat": "Cost uses purchase-unit cost, not a landed or net-of-discount cost.",
+    "published": true,
+    "display_in_dashboard": true
+  },
+  {
+    "metric_key": "waste_quantity",
+    "metric_name": "Waste quantity",
+    "layer": "marts",
+    "source_model": "mart_food_loss_summary",
+    "definition": "Quantity of food recorded as wasted, in the unit of the ingredient.",
+    "numerator": "sum(waste_quantity)",
+    "denominator": null,
+    "unit": "kg_or_unit",
+    "measurement_type": "measured",
+    "trust_states_allowed": [
+      "measured",
+      "partial",
+      "unverified"
+    ],
+    "owner": "ops",
+    "caveat": "Sum of source-recorded quantity from fct_waste_events. No estimation is applied.",
+    "published": true,
+    "display_in_dashboard": true
+  },
+  {
+    "metric_key": "waste_rate_per_demand",
+    "metric_name": "Waste rate per demand",
+    "layer": "marts",
+    "source_model": "mart_food_loss_summary",
+    "definition": "Total waste quantity divided by the total demand of the same ingredients, on the same days and locations. A ratio of totals, not an average of daily ratios.",
+    "numerator": "sum(waste_quantity)",
+    "denominator": "sum(ingredient_demand_qty)",
+    "unit": "ratio",
+    "measurement_type": "derived",
+    "trust_states_allowed": [
+      "measured"
+    ],
+    "owner": "ops analytics",
+    "caveat": "The denominator covers the ingredients that were wasted, not the whole menu. Published only where a demand denominator exists.",
+    "published": true,
+    "display_in_dashboard": true
+  }
+]

@@ -1,0 +1,1 @@
+"""WasteWiseAI ingestion package."""

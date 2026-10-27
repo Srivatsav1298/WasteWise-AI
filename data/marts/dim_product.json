@@ -1,0 +1,82 @@
+[
+  {
+    "product_key": "592c8317d5fea83357c54cb5ec5c7bd5",
+    "product_id": "avocado_toast",
+    "product_name": "Avocado toast",
+    "product_category": "Food",
+    "ingredient_key": "6118fda28fbc20966ba8daafdf836683",
+    "ingredient_id": "avocado",
+    "qty_per_unit": 0.08,
+    "product_unit": "kg"
+  },
+  {
+    "product_key": "6c35f55c4f8a0de1118b5e889246fd6d",
+    "product_id": "berry_bowl",
+    "product_name": "Berry breakfast bowl",
+    "product_category": "Food",
+    "ingredient_key": "45b8db8c564e04c80f032c96ba1d920d",
+    "ingredient_id": "berries",
+    "qty_per_unit": 0.09,
+    "product_unit": "kg"
+  },
+  {
+    "product_key": "dfab69005201ba339952942ef753972a",
+    "product_id": "chicken_wrap",
+    "product_name": "Chicken wrap",
+    "product_category": "Food",
+    "ingredient_key": "742929dcb631403d7c1c1efad2ca2700",
+    "ingredient_id": "chicken",
+    "qty_per_unit": 0.14,
+    "product_unit": "kg"
+  },
+  {
+    "product_key": "002c7569f8028f9577e5c79b7b3ddc08",
+    "product_id": "creme_brulee",
+    "product_name": "Creme brulee",
+    "product_category": "Dessert",
+    "ingredient_key": "ced53a9a10991dab1e3e66fa57afd43f",
+    "ingredient_id": "cream",
+    "qty_per_unit": 0.06,
+    "product_unit": "kg"
+  },
+  {
+    "product_key": "8eeab67665d7e39288bade40c37dd42e",
+    "product_id": "flat_white",
+    "product_name": "Flat white & latte",
+    "product_category": "Beverage",
+    "ingredient_key": "ecbdb882ae865a07d87611437fda0772",
+    "ingredient_id": "milk",
+    "qty_per_unit": 0.15,
+    "product_unit": "l"
+  },
+  {
+    "product_key": "e11df0f90833dd652f2ed76909f26a24",
+    "product_id": "salmon_open",
+    "product_name": "Salmon open sandwich",
+    "product_category": "Food",
+    "ingredient_key": "180fd182f9a0742f483619781ccc36c4",
+    "ingredient_id": "salmon",
+    "qty_per_unit": 0.12,
+    "product_unit": "kg"
+  },
+  {
+    "product_key": "7898babefdd88c68f08ce4136abe939b",
+    "product_id": "sourdough_loaf",
+    "product_name": "Sourdough loaf",
+    "product_category": "Bakery",
+    "ingredient_key": "dba7b12a19fe9d49fbb53d65c49bbce6",
+    "ingredient_id": "bread",
+    "qty_per_unit": 1,
+    "product_unit": "loaf"
+  },
+  {
+    "product_key": "364dba1515da092f6348e68120e28b7d",
+    "product_id": "tomato_soup",
+    "product_name": "Tomato soup",
+    "product_category": "Food",
+    "ingredient_key": "006f87892f47ef9aa60fa5ed01a440fb",
+    "ingredient_id": "tomato",
+    "qty_per_unit": 0.18,
+    "product_unit": "kg"
+  }
+]

@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# Node
+node_modules/
+# package-lock.json is committed: CI installs with `npm ci` and needs it.
+
+# Airflow (local state)
+airflow/logs/
+airflow/airflow.db
+airflow/dags/__pycache__/
+
+# dbt
+dbt_project/target/
+dbt_project/logs/
+dbt_project/dbt_packages/
+dbt_project/.user.yml
+logs/
+
+# Generated data: everything the pipeline rebuilds on demand.
+data/bronze/
+data/silver/
+data/clean/
+data/quarantine/
+data/legacy/
+data/warehouse.duckdb
+data/warehouse.duckdb.wal
+data/raw/
+
+# data/marts is deliberately NOT ignored: those are the published artefacts
+# the dashboard serves, and a reviewer should be able to see what was published.

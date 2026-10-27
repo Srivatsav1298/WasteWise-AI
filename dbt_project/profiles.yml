@@ -1,0 +1,18 @@
+wastewise:
+  target: local
+  outputs:
+    local:
+      type: duckdb
+      path: '../data/warehouse.duckdb'
+      schema: main
+      threads: 2
+    snowflake:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role: "{{ env_var('SNOWFLAKE_ROLE') }}"
+      database: "{{ env_var('SNOWFLAKE_DATABASE', 'WASTEWISE') }}"
+      warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE', 'WASTEWISE_XS') }}"
+      schema: ANALYTICS
+      threads: 2

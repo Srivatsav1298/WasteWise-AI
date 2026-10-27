@@ -1,0 +1,15 @@
+.git
+.github
+node_modules
+__pycache__
+*.pyc
+.pytest_cache
+logs
+dbt_project/logs
+dbt_project/target
+data/bronze
+data/silver
+data/clean
+data/quarantine
+data/warehouse.duckdb.wal
+data/warehouse.duckdb

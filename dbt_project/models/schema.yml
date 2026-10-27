@@ -1,0 +1,269 @@
+version: 2
+
+models:
+  # ---------------------------------------------------------------- staging
+  - name: stg_sales
+    description: "Point-of-sale unit counts. Grain: one row per sale line."
+    columns:
+      - name: sale_id
+        description: "Natural key of a sale line."
+        data_tests: [not_null, unique]
+      - name: units_sold
+        data_tests: [not_null, non_negative]
+  - name: stg_inventory_snapshots
+    description: "End-of-day stock on hand. Grain: location + date + ingredient."
+    columns:
+      - name: quantity_on_hand
+        data_tests: [not_null, non_negative]
+  - name: stg_waste_events
+    description: "Recorded waste. Grain: one row per waste event."
+    columns:
+      - name: waste_id
+        data_tests: [not_null, unique]
+      - name: waste_quantity
+        data_tests: [not_null, non_negative]
+      - name: waste_reason
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['spoilage', 'overproduction', 'trim', 'expired', 'damaged', 'other']
+  - name: stg_events
+    description: "External demand events. Grain: one row per event."
+    columns:
+      - name: event_id
+        data_tests: [not_null, unique]
+  - name: stg_products
+    description: "Product master. Grain: one row per product."
+    columns:
+      - name: product_id
+        data_tests: [not_null, unique]
+  - name: stg_ingredients
+    description: "Ingredient master. Grain: one row per ingredient."
+    columns:
+      - name: ingredient_id
+        data_tests: [not_null, unique]
+      - name: unit_cost
+        data_tests: [not_null, non_negative]
+  - name: stg_locations
+    description: "Location master. Grain: one row per cafe."
+    columns:
+      - name: location_id
+        data_tests: [not_null, unique]
+
+  # ---------------------------------------------------------------- dimensions
+  - name: dim_date
+    description: "Conformed calendar. Grain: one row per date. date_key is a DATE."
+    columns:
+      - name: date_key
+        data_tests: [not_null, unique]
+  - name: dim_location
+    description: "Cafe location dimension. Grain: one row per location."
+    columns:
+      - name: location_key
+        data_tests: [not_null, unique]
+      - name: location_id
+        data_tests: [not_null, unique]
+  - name: dim_ingredient
+    description: "Ingredient dimension with purchase unit and unit cost. Grain: one row per ingredient."
+    columns:
+      - name: ingredient_key
+        data_tests: [not_null, unique]
+      - name: ingredient_id
+        data_tests: [not_null, unique]
+  - name: dim_product
+    description: "Product dimension. Grain: one row per product."
+    columns:
+      - name: product_key
+        data_tests: [not_null, unique]
+  - name: dim_waste_reason
+    description: >
+      Waste reason dimension. Holds the avoidability policy and the prevention lever.
+      Grain: one row per waste reason.
+    columns:
+      - name: reason_key
+        data_tests: [not_null, unique]
+      - name: waste_reason
+        data_tests: [not_null, unique]
+      - name: avoidability
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['avoidable', 'potentially_avoidable', 'other']
+
+  # ---------------------------------------------------------------- facts
+  - name: fct_sales
+    description: >
+      Sales fact. Grain: one row per sale line (sale_id). Measures: units_sold,
+      demand_qty. Never aggregate this table directly; use the marts.
+    columns:
+      - name: sale_id
+        data_tests: [not_null, unique]
+      - name: units_sold
+        data_tests: [not_null, non_negative]
+      - name: demand_qty
+        data_tests: [not_null, non_negative]
+  - name: fct_waste_events
+    description: >
+      Waste fact. Grain: one row per waste event (waste_id). Measures: waste_quantity,
+      estimated_cost. Reference coverage flags stay visible so orphaned rows cannot
+      silently drop out of reporting.
+    columns:
+      - name: waste_id
+        data_tests: [not_null, unique]
+      - name: waste_quantity
+        data_tests: [not_null, non_negative]
+      - name: estimated_cost
+        data_tests: [not_null, non_negative]
+      - name: has_cost_reference
+        data_tests: [not_null]
+  - name: fct_inventory_snapshot
+    description: >
+      Inventory snapshot fact. Grain: location + snapshot_date + ingredient.
+      A snapshot is a state, not a movement: summing it across days is invalid.
+    columns:
+      - name: quantity_on_hand
+        data_tests: [not_null, non_negative]
+  - name: fct_demand_events
+    description: >
+      External demand event fact. Grain: one row per event (event_id). Attendance is an
+      estimate, so the row carries a confidence class and a signal weight.
+    columns:
+      - name: event_id
+        data_tests: [not_null, unique]
+      - name: attendance_confidence
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['high', 'medium', 'low', 'unknown']
+
+  # ---------------------------------------------------------------- intermediate
+  - name: int_sales_ingredient_demand
+    description: >
+      Ingredient demand by day, location and ingredient. This is the denominator for
+      waste rates. Grain: sale_date + location_id + ingredient_id.
+    columns:
+      - name: ingredient_demand_qty
+        data_tests: [not_null, non_negative]
+  - name: int_waste_with_context
+    description: >
+      Waste enriched with denominators, cost and avoidability. Grain: one row per waste
+      event. Every join uses the full business key, so the model cannot fan out.
+    columns:
+      - name: waste_id
+        data_tests: [not_null, unique]
+      - name: estimated_cost
+        data_tests: [not_null, non_negative]
+
+  # ---------------------------------------------------------------- marts
+  - name: mart_waste_opportunity
+    description: >
+      Waste opportunity table. Grain: waste_date + location_id + ingredient_id +
+      waste_reason. Carries coverage ratios so consumers know how much of the row is
+      backed by a denominator.
+    columns:
+      - name: waste_quantity
+        data_tests: [not_null, non_negative]
+      - name: estimated_cost
+        data_tests: [not_null, non_negative]
+  - name: mart_waste_priority
+    description: >
+      Ranked prevention backlog. Grain: waste_date + location_id + ingredient_id +
+      waste_reason. Ranked by cost x avoidability x coverage, with a per-row trust state.
+    columns:
+      - name: priority_rank
+        data_tests: [not_null, unique]
+      - name: opportunity_score
+        data_tests: [not_null, non_negative]
+      - name: priority_tier
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['high', 'medium', 'low']
+      - name: trust_state
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['measured', 'partial', 'unverified']
+  - name: mart_waste_daily
+    description: "Waste trend series. Grain: waste_date + location_id."
+    columns:
+      - name: waste_quantity
+        data_tests: [not_null, non_negative]
+  - name: mart_waste_by_reason
+    description: "Waste by reason. Grain: waste_reason."
+  - name: mart_waste_by_ingredient
+    description: "Waste by ingredient and location. Grain: ingredient_id + location_id."
+  - name: mart_waste_by_category
+    description: "Waste by ingredient category. Grain: category."
+  - name: mart_demand_events
+    description: >
+      Event impact on local demand and waste. Grain: event_id + location_id. Forward
+      looking events carry a signal but no measured lift.
+    columns:
+      - name: attendance_confidence
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['high', 'medium', 'low', 'unknown']
+  - name: mart_purchase_plan
+    description: >
+      Purchase planning aid. Grain: location_id + ingredient_id. Recommendations are
+      explainable heuristics, not forecasts.
+    columns:
+      - name: recommended_order_qty
+        data_tests: [not_null, non_negative]
+  - name: mart_food_loss_summary
+    description: >
+      Estate level food loss summary. Grain: location_id, plus one 'all' row for the
+      estate total. Publishes the ratio of totals for the waste rate, never an average
+      of per-row ratios.
+    columns:
+      - name: location_id
+        data_tests: [not_null, unique]
+      - name: waste_rate_per_demand
+        data_tests:
+          - not_null
+          - non_negative
+      - name: waste_quantity
+        data_tests: [not_null, non_negative]
+      - name: avoidable_cost_share
+        data_tests:
+          - not_null
+          - non_negative
+  - name: mart_metric_registry
+    description: >
+      Registry of every published metric: definition, source model, measurement type and
+      the trust states in which it may be displayed.
+    columns:
+      - name: metric_key
+        data_tests: [not_null, unique]
+      - name: measurement_type
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['measured', 'derived', 'estimated']
+  - name: mart_dq_expectations
+    description: >
+      Declared data quality expectations, versioned with the models they protect. The
+      trust engine evaluates these after every build.
+    columns:
+      - name: check_id
+        data_tests: [not_null, unique]
+      - name: severity
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['blocker', 'warning', 'info']
+      - name: check_spec
+        description: "Executable form of the expectation, evaluated by the trust engine."
+        data_tests: [not_null]
+      - name: contract_version
+        data_tests: [not_null]

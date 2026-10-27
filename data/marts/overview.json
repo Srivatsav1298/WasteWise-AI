@@ -1,0 +1,948 @@
+{
+  "waste_cost_at_risk": [
+    {
+      "value": 47846.42,
+      "rows_measured": 171
+    }
+  ],
+  "waste_quantity": [
+    {
+      "value": 296.94,
+      "rows_measured": 241
+    }
+  ],
+  "avoidable_share": [
+    {
+      "value": 0.898576
+    }
+  ],
+  "waste_rate_per_demand": [
+    {
+      "value": 0.317223,
+      "rows_with_denominator": 241,
+      "denominator": 936.06
+    }
+  ],
+  "locations": [
+    {
+      "location_id": "oslo_central",
+      "location_name": "Fjord & Bean Central",
+      "city": "Oslo",
+      "waste_cost": 20588.3,
+      "waste_quantity": 118.68,
+      "events": 90,
+      "waste_rate_per_demand": 0.262068
+    },
+    {
+      "location_id": "oslo_deck",
+      "location_name": "Fjord & Bean Bar",
+      "city": "Oslo",
+      "waste_cost": 18082.52,
+      "waste_quantity": 92.61,
+      "events": 80,
+      "waste_rate_per_demand": 0.343534
+    },
+    {
+      "location_id": "bergen_kai",
+      "location_name": "Fjord & Bean Bergen",
+      "city": "Bergen",
+      "waste_cost": 14576.09,
+      "waste_quantity": 85.65,
+      "events": 71,
+      "waste_rate_per_demand": 0.400946
+    }
+  ],
+  "top_ingredients": [
+    {
+      "ingredient_id": "salmon",
+      "ingredient_name": "Salmon",
+      "ingredient_category": "Protein",
+      "waste_cost": 17296.5,
+      "waste_quantity": 44.35
+    },
+    {
+      "ingredient_id": "avocado",
+      "ingredient_name": "Avocado",
+      "ingredient_category": "Produce",
+      "waste_cost": 10348.8,
+      "waste_quantity": 49.28
+    },
+    {
+      "ingredient_id": "berries",
+      "ingredient_name": "Berries",
+      "ingredient_category": "Produce",
+      "waste_cost": 7574.4,
+      "waste_quantity": 31.56
+    },
+    {
+      "ingredient_id": "cream",
+      "ingredient_name": "Cream",
+      "ingredient_category": "Dairy",
+      "waste_cost": 7064.85,
+      "waste_quantity": 36.23
+    },
+    {
+      "ingredient_id": "chicken",
+      "ingredient_name": "Chicken",
+      "ingredient_category": "Protein",
+      "waste_cost": 5651.25,
+      "waste_quantity": 20.55
+    },
+    {
+      "ingredient_id": "tomato",
+      "ingredient_name": "Tomato",
+      "ingredient_category": "Produce",
+      "waste_cost": 4393.92,
+      "waste_quantity": 45.77
+    },
+    {
+      "ingredient_id": "milk",
+      "ingredient_name": "Milk",
+      "ingredient_category": "Dairy",
+      "waste_cost": 486.5,
+      "waste_quantity": 34.75
+    },
+    {
+      "ingredient_id": "bread",
+      "ingredient_name": "Sourdough bread",
+      "ingredient_category": "Bakery",
+      "waste_cost": 430.69,
+      "waste_quantity": 34.45
+    }
+  ],
+  "daily_trend": [
+    {
+      "waste_date": "2026-09-01T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 3.48,
+      "estimated_cost": 1357.2,
+      "rolling_7d_avg_waste_qty": 3.48
+    },
+    {
+      "waste_date": "2026-09-01T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 1.78,
+      "estimated_cost": 211,
+      "rolling_7d_avg_waste_qty": 1.78
+    },
+    {
+      "waste_date": "2026-09-01T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 1.23,
+      "estimated_cost": 194.7,
+      "rolling_7d_avg_waste_qty": 1.23
+    },
+    {
+      "waste_date": "2026-09-02T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 0.48,
+      "estimated_cost": 187.2,
+      "rolling_7d_avg_waste_qty": 0.855
+    },
+    {
+      "waste_date": "2026-09-03T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 2.09,
+      "estimated_cost": 156.06,
+      "rolling_7d_avg_waste_qty": 2.785
+    },
+    {
+      "waste_date": "2026-09-03T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 2.39,
+      "estimated_cost": 213.04,
+      "rolling_7d_avg_waste_qty": 2.085
+    },
+    {
+      "waste_date": "2026-09-03T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 2.18,
+      "estimated_cost": 320.38,
+      "rolling_7d_avg_waste_qty": 1.297
+    },
+    {
+      "waste_date": "2026-09-04T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 1.47,
+      "estimated_cost": 67.62,
+      "rolling_7d_avg_waste_qty": 1.88
+    },
+    {
+      "waste_date": "2026-09-04T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 4.4,
+      "estimated_cost": 1716,
+      "rolling_7d_avg_waste_qty": 2.073
+    },
+    {
+      "waste_date": "2026-09-05T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 2.76,
+      "estimated_cost": 538.2,
+      "rolling_7d_avg_waste_qty": 2.777
+    },
+    {
+      "waste_date": "2026-09-05T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 2.71,
+      "estimated_cost": 180.51,
+      "rolling_7d_avg_waste_qty": 2.088
+    },
+    {
+      "waste_date": "2026-09-05T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 0.79,
+      "estimated_cost": 170.25,
+      "rolling_7d_avg_waste_qty": 1.816
+    },
+    {
+      "waste_date": "2026-09-06T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 1.79,
+      "estimated_cost": 22.38,
+      "rolling_7d_avg_waste_qty": 2.53
+    },
+    {
+      "waste_date": "2026-09-06T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 2.03,
+      "estimated_cost": 414.15,
+      "rolling_7d_avg_waste_qty": 2.076
+    },
+    {
+      "waste_date": "2026-09-06T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 2.58,
+      "estimated_cost": 482.43,
+      "rolling_7d_avg_waste_qty": 1.943
+    },
+    {
+      "waste_date": "2026-09-07T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 2.06,
+      "estimated_cost": 312.32,
+      "rolling_7d_avg_waste_qty": 2.436
+    },
+    {
+      "waste_date": "2026-09-07T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 0.57,
+      "estimated_cost": 75.78,
+      "rolling_7d_avg_waste_qty": 1.825
+    },
+    {
+      "waste_date": "2026-09-07T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 1.1,
+      "estimated_cost": 429,
+      "rolling_7d_avg_waste_qty": 1.823
+    },
+    {
+      "waste_date": "2026-09-08T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 0.35,
+      "estimated_cost": 73.5,
+      "rolling_7d_avg_waste_qty": 2.088
+    },
+    {
+      "waste_date": "2026-09-08T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 1.87,
+      "estimated_cost": 392.7,
+      "rolling_7d_avg_waste_qty": 1.831
+    },
+    {
+      "waste_date": "2026-09-08T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 1.77,
+      "estimated_cost": 154.14,
+      "rolling_7d_avg_waste_qty": 1.9
+    },
+    {
+      "waste_date": "2026-09-09T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 4.02,
+      "estimated_cost": 1261.9,
+      "rolling_7d_avg_waste_qty": 2.364
+    },
+    {
+      "waste_date": "2026-09-09T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 2.23,
+      "estimated_cost": 399.3,
+      "rolling_7d_avg_waste_qty": 1.896
+    },
+    {
+      "waste_date": "2026-09-09T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 2.65,
+      "estimated_cost": 597.34,
+      "rolling_7d_avg_waste_qty": 2.21
+    },
+    {
+      "waste_date": "2026-09-10T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 3.43,
+      "estimated_cost": 329.28,
+      "rolling_7d_avg_waste_qty": 2.357
+    },
+    {
+      "waste_date": "2026-09-10T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 5.42,
+      "estimated_cost": 972.95,
+      "rolling_7d_avg_waste_qty": 2.329
+    },
+    {
+      "waste_date": "2026-09-10T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 1.43,
+      "estimated_cost": 130.43,
+      "rolling_7d_avg_waste_qty": 2.103
+    },
+    {
+      "waste_date": "2026-09-11T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 3.24,
+      "estimated_cost": 426.42,
+      "rolling_7d_avg_waste_qty": 2.521
+    },
+    {
+      "waste_date": "2026-09-11T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 0.78,
+      "estimated_cost": 241.2,
+      "rolling_7d_avg_waste_qty": 2.23
+    },
+    {
+      "waste_date": "2026-09-11T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 3.41,
+      "estimated_cost": 566.4,
+      "rolling_7d_avg_waste_qty": 1.961
+    },
+    {
+      "waste_date": "2026-09-12T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 3.07,
+      "estimated_cost": 574.43,
+      "rolling_7d_avg_waste_qty": 2.566
+    },
+    {
+      "waste_date": "2026-09-12T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 2.1,
+      "estimated_cost": 121.52,
+      "rolling_7d_avg_waste_qty": 2.143
+    },
+    {
+      "waste_date": "2026-09-12T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 6.55,
+      "estimated_cost": 1112.93,
+      "rolling_7d_avg_waste_qty": 2.784
+    },
+    {
+      "waste_date": "2026-09-13T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 4.11,
+      "estimated_cost": 117.7,
+      "rolling_7d_avg_waste_qty": 2.897
+    },
+    {
+      "waste_date": "2026-09-13T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 5.01,
+      "estimated_cost": 595.52,
+      "rolling_7d_avg_waste_qty": 2.569
+    },
+    {
+      "waste_date": "2026-09-13T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 2.22,
+      "estimated_cost": 31.08,
+      "rolling_7d_avg_waste_qty": 2.733
+    },
+    {
+      "waste_date": "2026-09-14T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 2.97,
+      "estimated_cost": 536.48,
+      "rolling_7d_avg_waste_qty": 3.027
+    },
+    {
+      "waste_date": "2026-09-14T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 3.07,
+      "estimated_cost": 644.7,
+      "rolling_7d_avg_waste_qty": 2.926
+    },
+    {
+      "waste_date": "2026-09-14T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 2.77,
+      "estimated_cost": 139.84,
+      "rolling_7d_avg_waste_qty": 2.971
+    },
+    {
+      "waste_date": "2026-09-15T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 0.44,
+      "estimated_cost": 42.24,
+      "rolling_7d_avg_waste_qty": 3.04
+    },
+    {
+      "waste_date": "2026-09-15T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 2.51,
+      "estimated_cost": 558.18,
+      "rolling_7d_avg_waste_qty": 3.017
+    },
+    {
+      "waste_date": "2026-09-16T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 4.5,
+      "estimated_cost": 998.1,
+      "rolling_7d_avg_waste_qty": 3.109
+    },
+    {
+      "waste_date": "2026-09-16T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 1.34,
+      "estimated_cost": 368.5,
+      "rolling_7d_avg_waste_qty": 2.89
+    },
+    {
+      "waste_date": "2026-09-17T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 2.2,
+      "estimated_cost": 579.1,
+      "rolling_7d_avg_waste_qty": 2.933
+    },
+    {
+      "waste_date": "2026-09-17T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 0.45,
+      "estimated_cost": 62.5,
+      "rolling_7d_avg_waste_qty": 2.18
+    },
+    {
+      "waste_date": "2026-09-17T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 0.83,
+      "estimated_cost": 11.62,
+      "rolling_7d_avg_waste_qty": 2.837
+    },
+    {
+      "waste_date": "2026-09-18T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 0.52,
+      "estimated_cost": 6.5,
+      "rolling_7d_avg_waste_qty": 2.544
+    },
+    {
+      "waste_date": "2026-09-18T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 0.85,
+      "estimated_cost": 81.6,
+      "rolling_7d_avg_waste_qty": 2.58
+    },
+    {
+      "waste_date": "2026-09-19T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 1.46,
+      "estimated_cost": 229.26,
+      "rolling_7d_avg_waste_qty": 2.314
+    },
+    {
+      "waste_date": "2026-09-19T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 2.33,
+      "estimated_cost": 477.75,
+      "rolling_7d_avg_waste_qty": 2.401
+    },
+    {
+      "waste_date": "2026-09-19T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 2.23,
+      "estimated_cost": 511.85,
+      "rolling_7d_avg_waste_qty": 2.694
+    },
+    {
+      "waste_date": "2026-09-20T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 0.63,
+      "estimated_cost": 8.82,
+      "rolling_7d_avg_waste_qty": 1.817
+    },
+    {
+      "waste_date": "2026-09-20T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 6.6,
+      "estimated_cost": 1763.85,
+      "rolling_7d_avg_waste_qty": 3.044
+    },
+    {
+      "waste_date": "2026-09-20T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 1.38,
+      "estimated_cost": 292.88,
+      "rolling_7d_avg_waste_qty": 2.404
+    },
+    {
+      "waste_date": "2026-09-21T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 3.38,
+      "estimated_cost": 145.3,
+      "rolling_7d_avg_waste_qty": 1.876
+    },
+    {
+      "waste_date": "2026-09-21T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 7.23,
+      "estimated_cost": 1928.05,
+      "rolling_7d_avg_waste_qty": 3.361
+    },
+    {
+      "waste_date": "2026-09-21T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 0.47,
+      "estimated_cost": 91.65,
+      "rolling_7d_avg_waste_qty": 1.536
+    },
+    {
+      "waste_date": "2026-09-22T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 1.6,
+      "estimated_cost": 251.08,
+      "rolling_7d_avg_waste_qty": 2.041
+    },
+    {
+      "waste_date": "2026-09-22T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 1.03,
+      "estimated_cost": 14.42,
+      "rolling_7d_avg_waste_qty": 3.07
+    },
+    {
+      "waste_date": "2026-09-22T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 3.42,
+      "estimated_cost": 914.25,
+      "rolling_7d_avg_waste_qty": 1.707
+    },
+    {
+      "waste_date": "2026-09-23T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 5.1,
+      "estimated_cost": 833.84,
+      "rolling_7d_avg_waste_qty": 2.127
+    },
+    {
+      "waste_date": "2026-09-23T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 5,
+      "estimated_cost": 228.14,
+      "rolling_7d_avg_waste_qty": 3.426
+    },
+    {
+      "waste_date": "2026-09-23T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 1.71,
+      "estimated_cost": 470.25,
+      "rolling_7d_avg_waste_qty": 1.556
+    },
+    {
+      "waste_date": "2026-09-24T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 2.52,
+      "estimated_cost": 557.55,
+      "rolling_7d_avg_waste_qty": 2.173
+    },
+    {
+      "waste_date": "2026-09-25T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 3.98,
+      "estimated_cost": 835.8,
+      "rolling_7d_avg_waste_qty": 2.667
+    },
+    {
+      "waste_date": "2026-09-25T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 1.87,
+      "estimated_cost": 303.15,
+      "rolling_7d_avg_waste_qty": 3.501
+    },
+    {
+      "waste_date": "2026-09-25T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 1.55,
+      "estimated_cost": 404.1,
+      "rolling_7d_avg_waste_qty": 1.659
+    },
+    {
+      "waste_date": "2026-09-26T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 0.34,
+      "estimated_cost": 71.4,
+      "rolling_7d_avg_waste_qty": 2.507
+    },
+    {
+      "waste_date": "2026-09-26T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 6.51,
+      "estimated_cost": 1458.5,
+      "rolling_7d_avg_waste_qty": 4.367
+    },
+    {
+      "waste_date": "2026-09-27T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 3.77,
+      "estimated_cost": 959.38,
+      "rolling_7d_avg_waste_qty": 2.956
+    },
+    {
+      "waste_date": "2026-09-27T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 5.89,
+      "estimated_cost": 865.6,
+      "rolling_7d_avg_waste_qty": 4.876
+    },
+    {
+      "waste_date": "2026-09-27T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 2.64,
+      "estimated_cost": 492.11,
+      "rolling_7d_avg_waste_qty": 1.914
+    },
+    {
+      "waste_date": "2026-09-28T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 0.84,
+      "estimated_cost": 217.35,
+      "rolling_7d_avg_waste_qty": 2.593
+    },
+    {
+      "waste_date": "2026-09-28T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 0.72,
+      "estimated_cost": 172.8,
+      "rolling_7d_avg_waste_qty": 4.036
+    },
+    {
+      "waste_date": "2026-09-28T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 3.09,
+      "estimated_cost": 1205.1,
+      "rolling_7d_avg_waste_qty": 2.037
+    },
+    {
+      "waste_date": "2026-09-29T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 1.12,
+      "estimated_cost": 15.1,
+      "rolling_7d_avg_waste_qty": 2.524
+    },
+    {
+      "waste_date": "2026-09-30T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 4.47,
+      "estimated_cost": 950.48,
+      "rolling_7d_avg_waste_qty": 2.434
+    },
+    {
+      "waste_date": "2026-09-30T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 3.32,
+      "estimated_cost": 375.54,
+      "rolling_7d_avg_waste_qty": 3.477
+    },
+    {
+      "waste_date": "2026-09-30T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 1.4,
+      "estimated_cost": 188.13,
+      "rolling_7d_avg_waste_qty": 2.04
+    },
+    {
+      "waste_date": "2026-10-01T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 6.21,
+      "estimated_cost": 1072.38,
+      "rolling_7d_avg_waste_qty": 4.217
+    },
+    {
+      "waste_date": "2026-10-01T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 4.51,
+      "estimated_cost": 943.2,
+      "rolling_7d_avg_waste_qty": 2.617
+    },
+    {
+      "waste_date": "2026-10-02T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 1.06,
+      "estimated_cost": 13.25,
+      "rolling_7d_avg_waste_qty": 2.226
+    },
+    {
+      "waste_date": "2026-10-02T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 7.23,
+      "estimated_cost": 2087.2,
+      "rolling_7d_avg_waste_qty": 4.536
+    },
+    {
+      "waste_date": "2026-10-02T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 4.85,
+      "estimated_cost": 609.4,
+      "rolling_7d_avg_waste_qty": 2.821
+    },
+    {
+      "waste_date": "2026-10-03T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 2.71,
+      "estimated_cost": 569.1,
+      "rolling_7d_avg_waste_qty": 2.044
+    },
+    {
+      "waste_date": "2026-10-03T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 1.7,
+      "estimated_cost": 203.1,
+      "rolling_7d_avg_waste_qty": 4.511
+    },
+    {
+      "waste_date": "2026-10-03T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 2.76,
+      "estimated_cost": 518.67,
+      "rolling_7d_avg_waste_qty": 2.971
+    },
+    {
+      "waste_date": "2026-10-04T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 1.57,
+      "estimated_cost": 150.72,
+      "rolling_7d_avg_waste_qty": 2.22
+    },
+    {
+      "waste_date": "2026-10-04T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 1.1,
+      "estimated_cost": 105.6,
+      "rolling_7d_avg_waste_qty": 3.739
+    },
+    {
+      "waste_date": "2026-10-04T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 0.74,
+      "estimated_cost": 177.6,
+      "rolling_7d_avg_waste_qty": 2.856
+    },
+    {
+      "waste_date": "2026-10-05T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 0.57,
+      "estimated_cost": 119.7,
+      "rolling_7d_avg_waste_qty": 1.763
+    },
+    {
+      "waste_date": "2026-10-05T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 0.8,
+      "estimated_cost": 76.8,
+      "rolling_7d_avg_waste_qty": 3.011
+    },
+    {
+      "waste_date": "2026-10-05T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 3.49,
+      "estimated_cost": 634.68,
+      "rolling_7d_avg_waste_qty": 2.977
+    },
+    {
+      "waste_date": "2026-10-06T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 3.37,
+      "estimated_cost": 831.35,
+      "rolling_7d_avg_waste_qty": 3.39
+    },
+    {
+      "waste_date": "2026-10-06T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 0.65,
+      "estimated_cost": 62.4,
+      "rolling_7d_avg_waste_qty": 2.629
+    },
+    {
+      "waste_date": "2026-10-07T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 0.5,
+      "estimated_cost": 48,
+      "rolling_7d_avg_waste_qty": 1.714
+    },
+    {
+      "waste_date": "2026-10-07T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 4.05,
+      "estimated_cost": 562.26,
+      "rolling_7d_avg_waste_qty": 3.494
+    },
+    {
+      "waste_date": "2026-10-07T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 2.23,
+      "estimated_cost": 510.45,
+      "rolling_7d_avg_waste_qty": 2.747
+    },
+    {
+      "waste_date": "2026-10-08T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 1.71,
+      "estimated_cost": 164.16,
+      "rolling_7d_avg_waste_qty": 1.799
+    },
+    {
+      "waste_date": "2026-10-08T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 1.9,
+      "estimated_cost": 163.28,
+      "rolling_7d_avg_waste_qty": 2.879
+    },
+    {
+      "waste_date": "2026-10-08T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 4,
+      "estimated_cost": 1045.28,
+      "rolling_7d_avg_waste_qty": 2.674
+    },
+    {
+      "waste_date": "2026-10-09T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 0.38,
+      "estimated_cost": 79.8,
+      "rolling_7d_avg_waste_qty": 1.214
+    },
+    {
+      "waste_date": "2026-10-09T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 1.94,
+      "estimated_cost": 372,
+      "rolling_7d_avg_waste_qty": 2.123
+    },
+    {
+      "waste_date": "2026-10-09T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 1.2,
+      "estimated_cost": 234,
+      "rolling_7d_avg_waste_qty": 2.153
+    },
+    {
+      "waste_date": "2026-10-10T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 6.19,
+      "estimated_cost": 1255.35,
+      "rolling_7d_avg_waste_qty": 2.764
+    },
+    {
+      "waste_date": "2026-10-10T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 0.73,
+      "estimated_cost": 153.3,
+      "rolling_7d_avg_waste_qty": 1.863
+    },
+    {
+      "waste_date": "2026-10-11T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 0.26,
+      "estimated_cost": 101.4,
+      "rolling_7d_avg_waste_qty": 1.1
+    },
+    {
+      "waste_date": "2026-10-11T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 0.2,
+      "estimated_cost": 78,
+      "rolling_7d_avg_waste_qty": 2.636
+    },
+    {
+      "waste_date": "2026-10-11T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 2.68,
+      "estimated_cost": 257.28,
+      "rolling_7d_avg_waste_qty": 2.14
+    },
+    {
+      "waste_date": "2026-10-12T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 2.22,
+      "estimated_cost": 375,
+      "rolling_7d_avg_waste_qty": 1.03
+    },
+    {
+      "waste_date": "2026-10-12T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 2.67,
+      "estimated_cost": 138.24,
+      "rolling_7d_avg_waste_qty": 2.023
+    },
+    {
+      "waste_date": "2026-10-13T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 1.49,
+      "estimated_cost": 303.35,
+      "rolling_7d_avg_waste_qty": 1.019
+    },
+    {
+      "waste_date": "2026-10-13T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 2.5,
+      "estimated_cost": 371.66,
+      "rolling_7d_avg_waste_qty": 2.879
+    },
+    {
+      "waste_date": "2026-10-13T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 6.41,
+      "estimated_cost": 903.96,
+      "rolling_7d_avg_waste_qty": 2.846
+    },
+    {
+      "waste_date": "2026-10-14T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 2.34,
+      "estimated_cost": 236.94,
+      "rolling_7d_avg_waste_qty": 1.271
+    },
+    {
+      "waste_date": "2026-10-14T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 4.22,
+      "estimated_cost": 52.75,
+      "rolling_7d_avg_waste_qty": 3
+    },
+    {
+      "waste_date": "2026-10-15T00:00:00",
+      "location_id": "bergen_kai",
+      "waste_quantity": 0.6,
+      "estimated_cost": 7.5,
+      "rolling_7d_avg_waste_qty": 1.286
+    },
+    {
+      "waste_date": "2026-10-15T00:00:00",
+      "location_id": "oslo_central",
+      "waste_quantity": 1.04,
+      "estimated_cost": 249.6,
+      "rolling_7d_avg_waste_qty": 2.57
+    },
+    {
+      "waste_date": "2026-10-15T00:00:00",
+      "location_id": "oslo_deck",
+      "waste_quantity": 2.56,
+      "estimated_cost": 998.4,
+      "rolling_7d_avg_waste_qty": 2.893
+    }
+  ]
+}

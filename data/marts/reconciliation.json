@@ -1,0 +1,132 @@
+{
+  "generated_at": "2026-10-22T12:58:21+00:00",
+  "totals": {
+    "rows_in": 2427,
+    "rows_out": 2425,
+    "rows_rejected": 0,
+    "duplicates_removed": 2
+  },
+  "sources": {
+    "events.csv": {
+      "entity": "fct_demand_events",
+      "grain": [
+        "event_id"
+      ],
+      "contract_version": "2.0.0",
+      "bronze_snapshot": "data/bronze/events.csv/20261022T125820Z-d3afee.parquet",
+      "silver_path": "data/silver/events.parquet",
+      "rows_delivered": 5,
+      "rows_published": 5,
+      "rows_rejected": 0,
+      "duplicates_removed": 0,
+      "retained_pct": 100.0,
+      "rejected_pct": 0.0,
+      "quarantine_errors": [],
+      "ingested_at": "2026-10-22T12:58:21+00:00"
+    },
+    "ingredients.csv": {
+      "entity": "dim_ingredient",
+      "grain": [
+        "ingredient_id"
+      ],
+      "contract_version": "2.0.0",
+      "bronze_snapshot": "data/bronze/ingredients.csv/20261022T125820Z-d3afee.parquet",
+      "silver_path": "data/silver/ingredients.parquet",
+      "rows_delivered": 8,
+      "rows_published": 8,
+      "rows_rejected": 0,
+      "duplicates_removed": 0,
+      "retained_pct": 100.0,
+      "rejected_pct": 0.0,
+      "quarantine_errors": [],
+      "ingested_at": "2026-10-22T12:58:21+00:00"
+    },
+    "inventory_snapshots.csv": {
+      "entity": "fct_inventory_snapshot",
+      "grain": [
+        "location_id",
+        "snapshot_date",
+        "ingredient_id"
+      ],
+      "contract_version": "2.0.0",
+      "bronze_snapshot": "data/bronze/inventory_snapshots.csv/20261022T125820Z-d3afee.parquet",
+      "silver_path": "data/silver/inventory_snapshots.parquet",
+      "rows_delivered": 1081,
+      "rows_published": 1080,
+      "rows_rejected": 0,
+      "duplicates_removed": 1,
+      "retained_pct": 99.91,
+      "rejected_pct": 0.0,
+      "quarantine_errors": [],
+      "ingested_at": "2026-10-22T12:58:21+00:00"
+    },
+    "locations.csv": {
+      "entity": "dim_location",
+      "grain": [
+        "location_id"
+      ],
+      "contract_version": "2.0.0",
+      "bronze_snapshot": "data/bronze/locations.csv/20261022T125820Z-d3afee.parquet",
+      "silver_path": "data/silver/locations.parquet",
+      "rows_delivered": 3,
+      "rows_published": 3,
+      "rows_rejected": 0,
+      "duplicates_removed": 0,
+      "retained_pct": 100.0,
+      "rejected_pct": 0.0,
+      "quarantine_errors": [],
+      "ingested_at": "2026-10-22T12:58:21+00:00"
+    },
+    "products.csv": {
+      "entity": "dim_product",
+      "grain": [
+        "product_id"
+      ],
+      "contract_version": "2.0.0",
+      "bronze_snapshot": "data/bronze/products.csv/20261022T125820Z-d3afee.parquet",
+      "silver_path": "data/silver/products.parquet",
+      "rows_delivered": 8,
+      "rows_published": 8,
+      "rows_rejected": 0,
+      "duplicates_removed": 0,
+      "retained_pct": 100.0,
+      "rejected_pct": 0.0,
+      "quarantine_errors": [],
+      "ingested_at": "2026-10-22T12:58:21+00:00"
+    },
+    "sales.csv": {
+      "entity": "fct_sales",
+      "grain": [
+        "sale_id"
+      ],
+      "contract_version": "2.0.0",
+      "bronze_snapshot": "data/bronze/sales.csv/20261022T125820Z-d3afee.parquet",
+      "silver_path": "data/silver/sales.parquet",
+      "rows_delivered": 1081,
+      "rows_published": 1080,
+      "rows_rejected": 0,
+      "duplicates_removed": 1,
+      "retained_pct": 99.91,
+      "rejected_pct": 0.0,
+      "quarantine_errors": [],
+      "ingested_at": "2026-10-22T12:58:21+00:00"
+    },
+    "waste_events.csv": {
+      "entity": "fct_waste_events",
+      "grain": [
+        "waste_id"
+      ],
+      "contract_version": "2.0.0",
+      "bronze_snapshot": "data/bronze/waste_events.csv/20261022T125820Z-d3afee.parquet",
+      "silver_path": "data/silver/waste_events.parquet",
+      "rows_delivered": 241,
+      "rows_published": 241,
+      "rows_rejected": 0,
+      "duplicates_removed": 0,
+      "retained_pct": 100.0,
+      "rejected_pct": 0.0,
+      "quarantine_errors": [],
+      "ingested_at": "2026-10-22T12:58:21+00:00"
+    }
+  }
+}

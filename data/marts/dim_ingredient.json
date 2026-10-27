@@ -1,0 +1,90 @@
+[
+  {
+    "ingredient_key": "6118fda28fbc20966ba8daafdf836683",
+    "ingredient_id": "avocado",
+    "ingredient_name": "Avocado",
+    "ingredient_category": "Produce",
+    "ingredient_unit": "kg",
+    "pack_size": 6,
+    "unit_cost": 210,
+    "pack_cost": 1260,
+    "measure_kind": "weight"
+  },
+  {
+    "ingredient_key": "45b8db8c564e04c80f032c96ba1d920d",
+    "ingredient_id": "berries",
+    "ingredient_name": "Berries",
+    "ingredient_category": "Produce",
+    "ingredient_unit": "kg",
+    "pack_size": 6,
+    "unit_cost": 240,
+    "pack_cost": 1440,
+    "measure_kind": "weight"
+  },
+  {
+    "ingredient_key": "dba7b12a19fe9d49fbb53d65c49bbce6",
+    "ingredient_id": "bread",
+    "ingredient_name": "Sourdough bread",
+    "ingredient_category": "Bakery",
+    "ingredient_unit": "loaf",
+    "pack_size": 10,
+    "unit_cost": 12.5,
+    "pack_cost": 125,
+    "measure_kind": "unit"
+  },
+  {
+    "ingredient_key": "742929dcb631403d7c1c1efad2ca2700",
+    "ingredient_id": "chicken",
+    "ingredient_name": "Chicken",
+    "ingredient_category": "Protein",
+    "ingredient_unit": "kg",
+    "pack_size": 5,
+    "unit_cost": 275,
+    "pack_cost": 1375,
+    "measure_kind": "weight"
+  },
+  {
+    "ingredient_key": "ced53a9a10991dab1e3e66fa57afd43f",
+    "ingredient_id": "cream",
+    "ingredient_name": "Cream",
+    "ingredient_category": "Dairy",
+    "ingredient_unit": "kg",
+    "pack_size": 6,
+    "unit_cost": 195,
+    "pack_cost": 1170,
+    "measure_kind": "weight"
+  },
+  {
+    "ingredient_key": "ecbdb882ae865a07d87611437fda0772",
+    "ingredient_id": "milk",
+    "ingredient_name": "Milk",
+    "ingredient_category": "Dairy",
+    "ingredient_unit": "l",
+    "pack_size": 12,
+    "unit_cost": 14,
+    "pack_cost": 168,
+    "measure_kind": "volume"
+  },
+  {
+    "ingredient_key": "180fd182f9a0742f483619781ccc36c4",
+    "ingredient_id": "salmon",
+    "ingredient_name": "Salmon",
+    "ingredient_category": "Protein",
+    "ingredient_unit": "kg",
+    "pack_size": 6,
+    "unit_cost": 390,
+    "pack_cost": 2340,
+    "measure_kind": "weight"
+  },
+  {
+    "ingredient_key": "006f87892f47ef9aa60fa5ed01a440fb",
+    "ingredient_id": "tomato",
+    "ingredient_name": "Tomato",
+    "ingredient_category": "Produce",
+    "ingredient_unit": "kg",
+    "pack_size": 8,
+    "unit_cost": 96,
+    "pack_cost": 768,
+    "measure_kind": "weight"
+  }
+]

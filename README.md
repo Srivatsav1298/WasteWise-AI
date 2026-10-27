@@ -50,15 +50,36 @@ make install        # python + node dependencies
 npx playwright install chromium   # once, for the browser tests
 make generate       # write the synthetic delivery files
 make pipeline       # deliveries -> warehouse -> trust engine -> published artefacts
-make test           # 94 python tests
+make test           # 127 python tests
 make test-frontend  # 40 browser checks on the dashboard
 make test-a11y      # 43 accessibility and contrast checks
 make test-blocked   # prove a blocked gate shows no stale numbers
+make test-airflow   # 24 Airflow DAG contract checks
 make serve          # http://localhost:4173
 ```
 
 The dashboard is static. It reads `data/marts/*.json` over HTTP, so it can be
 hosted anywhere: `python -m http.server`, nginx, S3, GitHub Pages.
+
+## Airflow (optional)
+
+The pipeline runs from a shell (`make pipeline`). Airflow is the scheduled,
+event-driven way to run the *same* pipeline: one DAG, the same scripts, the
+same fail-closed rule. It adds a daily schedule, backfill for a missed day, a
+retry for a transient warehouse failure (contract failures are never retried),
+a sensor that waits for a delivery to land, and an asset
+(`wastewise://published/marts`) other DAGs can subscribe to.
+
+```bash
+pip install -r requirements-airflow.txt
+export WASTEWISE_ROOT=$(pwd)
+airflow standalone                    # or: make airflow-up
+```
+
+Nothing in the warehouse, the trust engine or the dashboard depends on
+Airflow, and the DAG is tested without it installed
+(`make airflow-test`). See `airflow/README.md` for the task table, the
+configuration and the Docker Compose setup.
 
 ## The Data Trust Engine
 
@@ -130,8 +151,9 @@ rather than presented as a demand forecast.
 ```
 ingestion/        contracts, bronze, silver, synthetic deliveries
 dbt_project/      sources, macros, staging, intermediate, dim, facts, marts
-scripts/          trust engine, export, reconcile, local runner, entry points
+scripts/          trust engine, export, reconcile, gate status, local runner
 orchestration/    ordered pipeline
+airflow/          the scheduled DAG, its image and its compose stack
 tests/            python unit tests, browser smoke, a11y audit, blocked-gate test
 data/             deliveries, bronze/silver snapshots, warehouse, published artefacts
 docs/             architecture, data dictionary, runbook
@@ -146,6 +168,7 @@ make publish       # trust engine + export only
 make test-frontend # drive the dashboard in a real browser
 make test-a11y     # contrast, heading order, names and focus audit
 make test-blocked  # a closed gate renders the block, never stale numbers
+make test-airflow  # the Airflow DAG contract, without Airflow installed
 make check         # syntax check every python and javascript file
 ```
 

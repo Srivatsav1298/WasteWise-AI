@@ -1,0 +1,13 @@
+# Optional: the Airflow orchestrator.
+#
+# The pipeline does not need Airflow. Install this when the pipeline has to
+# run on a schedule, backfill a missed day, retry a transient warehouse
+# failure or trigger another DAG when new numbers are published.
+#
+# Airflow pins its own dependency versions, so install it on its own rather
+# than into an environment that already holds the pipeline requirements:
+#
+#   pip install -r requirements-airflow.txt \
+#     --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-3.0.2/constraints-3.12.txt"
+apache-airflow>=3.0,<4.0
+apache-airflow-providers-standard>=1.0,<2.0

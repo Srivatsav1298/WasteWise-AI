@@ -1,0 +1,16 @@
+{
+  "name": "wastewiseai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Food waste intelligence dashboard: static frontend reader of published warehouse artefacts.",
+  "scripts": {
+    "serve": "python3 -m http.server 4173",
+    "test:frontend": "node tests/frontend_smoke.mjs",
+    "test:a11y": "node tests/frontend_a11y.mjs",
+    "check": "node --check data.js && node --check charts.js && node --check views.js && node --check views-ops.js && node --check app.js",
+    "test:blocked": "node tests/frontend_blocked.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.64.1"
+  }
+}

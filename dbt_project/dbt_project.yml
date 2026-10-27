@@ -1,0 +1,25 @@
+name: wastewise
+version: '2.0.0'
+config-version: 2
+profile: wastewise
+model-paths: [models]
+test-paths: [tests]
+macro-paths: [macros]
+models:
+  wastewise:
+    staging: {+materialized: view}
+    intermediate: {+materialized: view}
+    dim: {+materialized: table}
+    facts: {+materialized: table}
+    marts: {+materialized: table}
+
+vars:
+  # Business rules that change decisions live here, not in the dashboard.
+  avoidable_reasons: ['spoilage', 'expired', 'overproduction']
+  # A rate is only publishable when at least this share of rows has a denominator.
+  min_coverage_for_ranking: 0.5
+  # Opportunity score thresholds that map to the priority tiers.
+  priority_tier_high: 1000
+  priority_tier_medium: 250
+  # Days of average demand to hold on hand in the purchase plan.
+  target_cover_days: 3

@@ -1,0 +1,50 @@
+[
+  {
+    "reason_key": "46cc0df55d22d6eb6c37cabbc09f5193",
+    "waste_reason": "damaged",
+    "avoidability": "other",
+    "avoidability_flag": 0,
+    "definition": "Handling or storage damage",
+    "prevention_lever": "Review handling and storage procedure"
+  },
+  {
+    "reason_key": "c4bfb2a0bab0e91bc7dcfbe3bbec246e",
+    "waste_reason": "expired",
+    "avoidability": "avoidable",
+    "avoidability_flag": 1,
+    "definition": "Shelf life elapsed before use",
+    "prevention_lever": "Review shelf life assumptions and date labelling"
+  },
+  {
+    "reason_key": "795f3202b17cb6bc3d4b771d8c6c9eaf",
+    "waste_reason": "other",
+    "avoidability": "other",
+    "avoidability_flag": 0,
+    "definition": "Unclassified waste",
+    "prevention_lever": "Investigate and re-classify at source"
+  },
+  {
+    "reason_key": "a20340a564b71c44ba6c9839bfe713db",
+    "waste_reason": "overproduction",
+    "avoidability": "potentially_avoidable",
+    "avoidability_flag": 1,
+    "definition": "More produced than sold",
+    "prevention_lever": "Size production to forecast demand, not to traffic"
+  },
+  {
+    "reason_key": "5293c709a0f8c223ccb6cadcd259bc4e",
+    "waste_reason": "spoilage",
+    "avoidability": "avoidable",
+    "avoidability_flag": 1,
+    "definition": "Product spoiled before it could be used",
+    "prevention_lever": "Reduce order size, tighten first-expiry-first-out"
+  },
+  {
+    "reason_key": "9e2cd3a49272eb4863464c187878b93d",
+    "waste_reason": "trim",
+    "avoidability": "other",
+    "avoidability_flag": 0,
+    "definition": "Preparation trim and peeling",
+    "prevention_lever": "Track trim rate as a yield KPI, not as waste"
+  }
+]

@@ -1,0 +1,269 @@
+{
+  "models": {
+    "dim_date": {
+      "depends_on_models": [
+        "stg_events",
+        "stg_inventory_snapshots",
+        "stg_sales",
+        "stg_waste_events"
+      ],
+      "depends_on_sources": [],
+      "materialized": "table",
+      "description": "Conformed calendar. Grain: one row per date. date_key is a DATE."
+    },
+    "dim_ingredient": {
+      "depends_on_models": [
+        "stg_ingredients"
+      ],
+      "depends_on_sources": [],
+      "materialized": "table",
+      "description": "Ingredient dimension with purchase unit and unit cost. Grain: one row per ingredient."
+    },
+    "dim_location": {
+      "depends_on_models": [
+        "stg_locations"
+      ],
+      "depends_on_sources": [],
+      "materialized": "table",
+      "description": "Cafe location dimension. Grain: one row per location."
+    },
+    "dim_product": {
+      "depends_on_models": [
+        "dim_ingredient",
+        "stg_products"
+      ],
+      "depends_on_sources": [],
+      "materialized": "table",
+      "description": "Product dimension. Grain: one row per product."
+    },
+    "dim_waste_reason": {
+      "depends_on_models": [],
+      "depends_on_sources": [],
+      "materialized": "table",
+      "description": "Waste reason dimension. Holds the avoidability policy and the prevention lever. Grain: one row per waste reason."
+    },
+    "fct_demand_events": {
+      "depends_on_models": [
+        "dim_date",
+        "stg_events"
+      ],
+      "depends_on_sources": [],
+      "materialized": "table",
+      "description": "External demand event fact. Grain: one row per event (event_id). Attendance is an estimate, so the row carries a confidence class and a signal weight."
+    },
+    "fct_inventory_snapshot": {
+      "depends_on_models": [
+        "dim_date",
+        "dim_ingredient",
+        "dim_location",
+        "stg_inventory_snapshots"
+      ],
+      "depends_on_sources": [],
+      "materialized": "table",
+      "description": "Inventory snapshot fact. Grain: location + snapshot_date + ingredient. A snapshot is a state, not a movement: summing it across days is invalid."
+    },
+    "fct_sales": {
+      "depends_on_models": [
+        "dim_date",
+        "dim_location",
+        "dim_product",
+        "stg_sales"
+      ],
+      "depends_on_sources": [],
+      "materialized": "table",
+      "description": "Sales fact. Grain: one row per sale line (sale_id). Measures: units_sold, demand_qty. Never aggregate this table directly; use the marts."
+    },
+    "fct_waste_events": {
+      "depends_on_models": [
+        "dim_date",
+        "dim_ingredient",
+        "dim_location",
+        "dim_waste_reason",
+        "stg_waste_events"
+      ],
+      "depends_on_sources": [],
+      "materialized": "table",
+      "description": "Waste fact. Grain: one row per waste event (waste_id). Measures: waste_quantity, estimated_cost. Reference coverage flags stay visible so orphaned rows cannot silently drop out of reporting."
+    },
+    "int_sales_ingredient_demand": {
+      "depends_on_models": [
+        "stg_products",
+        "stg_sales"
+      ],
+      "depends_on_sources": [],
+      "materialized": "view",
+      "description": "Ingredient demand by day, location and ingredient. This is the denominator for waste rates. Grain: sale_date + location_id + ingredient_id."
+    },
+    "int_waste_with_context": {
+      "depends_on_models": [
+        "dim_waste_reason",
+        "int_sales_ingredient_demand",
+        "stg_ingredients",
+        "stg_inventory_snapshots",
+        "stg_waste_events"
+      ],
+      "depends_on_sources": [],
+      "materialized": "view",
+      "description": "Waste enriched with denominators, cost and avoidability. Grain: one row per waste event. Every join uses the full business key, so the model cannot fan out."
+    },
+    "mart_demand_events": {
+      "depends_on_models": [
+        "dim_location",
+        "fct_demand_events",
+        "fct_sales",
+        "int_waste_with_context"
+      ],
+      "depends_on_sources": [],
+      "materialized": "table",
+      "description": "Event impact on local demand and waste. Grain: event_id + location_id. Forward looking events carry a signal but no measured lift."
+    },
+    "mart_dq_expectations": {
+      "depends_on_models": [],
+      "depends_on_sources": [],
+      "materialized": "table",
+      "description": "Declared data quality expectations, versioned with the models they protect. The trust engine evaluates these after every build."
+    },
+    "mart_food_loss_summary": {
+      "depends_on_models": [
+        "dim_location",
+        "int_waste_with_context",
+        "mart_waste_priority"
+      ],
+      "depends_on_sources": [],
+      "materialized": "table",
+      "description": "Estate level food loss summary. Grain: location_id, plus one 'all' row for the estate total. Publishes the ratio of totals for the waste rate, never an average of per-row ratios."
+    },
+    "mart_metric_registry": {
+      "depends_on_models": [],
+      "depends_on_sources": [],
+      "materialized": "table",
+      "description": "Registry of every published metric: definition, source model, measurement type and the trust states in which it may be displayed."
+    },
+    "mart_purchase_plan": {
+      "depends_on_models": [
+        "dim_ingredient",
+        "dim_location",
+        "fct_inventory_snapshot",
+        "int_sales_ingredient_demand",
+        "int_waste_with_context"
+      ],
+      "depends_on_sources": [],
+      "materialized": "table",
+      "description": "Purchase planning aid. Grain: location_id + ingredient_id. Recommendations are explainable heuristics, not forecasts."
+    },
+    "mart_waste_by_category": {
+      "depends_on_models": [
+        "int_waste_with_context"
+      ],
+      "depends_on_sources": [],
+      "materialized": "table",
+      "description": "Waste by ingredient category. Grain: category."
+    },
+    "mart_waste_by_ingredient": {
+      "depends_on_models": [
+        "int_waste_with_context"
+      ],
+      "depends_on_sources": [],
+      "materialized": "table",
+      "description": "Waste by ingredient and location. Grain: ingredient_id + location_id."
+    },
+    "mart_waste_by_reason": {
+      "depends_on_models": [
+        "int_waste_with_context"
+      ],
+      "depends_on_sources": [],
+      "materialized": "table",
+      "description": "Waste by reason. Grain: waste_reason."
+    },
+    "mart_waste_daily": {
+      "depends_on_models": [
+        "int_waste_with_context"
+      ],
+      "depends_on_sources": [],
+      "materialized": "table",
+      "description": "Waste trend series. Grain: waste_date + location_id."
+    },
+    "mart_waste_opportunity": {
+      "depends_on_models": [
+        "int_waste_with_context"
+      ],
+      "depends_on_sources": [],
+      "materialized": "table",
+      "description": "Waste opportunity table. Grain: waste_date + location_id + ingredient_id + waste_reason. Carries coverage ratios so consumers know how much of the row is backed by a denominator."
+    },
+    "mart_waste_priority": {
+      "depends_on_models": [
+        "mart_waste_opportunity"
+      ],
+      "depends_on_sources": [],
+      "materialized": "table",
+      "description": "Ranked prevention backlog. Grain: waste_date + location_id + ingredient_id + waste_reason. Ranked by cost x avoidability x coverage, with a per-row trust state."
+    },
+    "stg_events": {
+      "depends_on_models": [],
+      "depends_on_sources": [
+        "events"
+      ],
+      "materialized": "view",
+      "description": "External demand events. Grain: one row per event."
+    },
+    "stg_ingredients": {
+      "depends_on_models": [],
+      "depends_on_sources": [
+        "ingredients"
+      ],
+      "materialized": "view",
+      "description": "Ingredient master. Grain: one row per ingredient."
+    },
+    "stg_inventory_snapshots": {
+      "depends_on_models": [],
+      "depends_on_sources": [
+        "inventory_snapshots"
+      ],
+      "materialized": "view",
+      "description": "End-of-day stock on hand. Grain: location + date + ingredient."
+    },
+    "stg_locations": {
+      "depends_on_models": [],
+      "depends_on_sources": [
+        "locations"
+      ],
+      "materialized": "view",
+      "description": "Location master. Grain: one row per cafe."
+    },
+    "stg_products": {
+      "depends_on_models": [],
+      "depends_on_sources": [
+        "products"
+      ],
+      "materialized": "view",
+      "description": "Product master. Grain: one row per product."
+    },
+    "stg_sales": {
+      "depends_on_models": [],
+      "depends_on_sources": [
+        "sales"
+      ],
+      "materialized": "view",
+      "description": "Point-of-sale unit counts. Grain: one row per sale line."
+    },
+    "stg_waste_events": {
+      "depends_on_models": [],
+      "depends_on_sources": [
+        "waste_events"
+      ],
+      "materialized": "view",
+      "description": "Recorded waste. Grain: one row per waste event."
+    }
+  },
+  "sources": [
+    "events",
+    "ingredients",
+    "inventory_snapshots",
+    "locations",
+    "products",
+    "sales",
+    "waste_events"
+  ],
+  "generated_at": "2026-10-22T12:58:29+00:00"
+}

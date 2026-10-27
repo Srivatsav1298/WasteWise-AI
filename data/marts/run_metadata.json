@@ -1,0 +1,101 @@
+{
+  "status": "success",
+  "run_id": "20261022T125820Z-d3afee",
+  "contract_version": "2.0.0",
+  "started_at": "2026-10-22T12:58:21+00:00",
+  "sources": [
+    {
+      "source": "sales.csv",
+      "records": 1080,
+      "errors": 0,
+      "rows_in": 1081,
+      "duplicates_removed": 1
+    },
+    {
+      "source": "inventory_snapshots.csv",
+      "records": 1080,
+      "errors": 0,
+      "rows_in": 1081,
+      "duplicates_removed": 1
+    },
+    {
+      "source": "waste_events.csv",
+      "records": 241,
+      "errors": 0,
+      "rows_in": 241,
+      "duplicates_removed": 0
+    },
+    {
+      "source": "events.csv",
+      "records": 5,
+      "errors": 0,
+      "rows_in": 5,
+      "duplicates_removed": 0
+    },
+    {
+      "source": "products.csv",
+      "records": 8,
+      "errors": 0,
+      "rows_in": 8,
+      "duplicates_removed": 0
+    },
+    {
+      "source": "ingredients.csv",
+      "records": 8,
+      "errors": 0,
+      "rows_in": 8,
+      "duplicates_removed": 0
+    },
+    {
+      "source": "locations.csv",
+      "records": 3,
+      "errors": 0,
+      "rows_in": 3,
+      "duplicates_removed": 0
+    }
+  ],
+  "bronze": {
+    "run_id": "20261022T125820Z-d3afee",
+    "total_rows": 2427
+  },
+  "rows_in": 2427,
+  "rows_out": 2425,
+  "rows_rejected": 0,
+  "duplicates_removed": 2,
+  "clean_exports": [
+    {
+      "source": "sales.csv",
+      "clean_path": "data/clean/sales.csv"
+    },
+    {
+      "source": "inventory_snapshots.csv",
+      "clean_path": "data/clean/inventory_snapshots.csv"
+    },
+    {
+      "source": "waste_events.csv",
+      "clean_path": "data/clean/waste_events.csv"
+    },
+    {
+      "source": "events.csv",
+      "clean_path": "data/clean/events.csv"
+    },
+    {
+      "source": "products.csv",
+      "clean_path": "data/clean/products.csv"
+    },
+    {
+      "source": "ingredients.csv",
+      "clean_path": "data/clean/ingredients.csv"
+    },
+    {
+      "source": "locations.csv",
+      "clean_path": "data/clean/locations.csv"
+    }
+  ],
+  "legacy_marts": {
+    "waste_by_reason": {
+      "rows": 5,
+      "path": "data/legacy/waste_by_reason.csv"
+    }
+  }
+}

@@ -1,0 +1,928 @@
+{
+  "status": "published",
+  "generated_at": "2026-10-22T12:58:29+00:00",
+  "contract_version": "2.0.0",
+  "summary": {
+    "checks_total": 20,
+    "checks_passed": 20,
+    "checks_failed": 0,
+    "blockers": 0,
+    "warnings": 0,
+    "metrics_total": 8,
+    "metrics_displayable": 8
+  },
+  "checks": [
+    {
+      "check_id": "dq_cost_coverage",
+      "target_model": "mart_waste_priority",
+      "check_type": "coverage",
+      "dimension": "completeness",
+      "severity": "warning",
+      "status": "pass",
+      "observed": 1.0,
+      "threshold": 1.0,
+      "comparison": "every ranked row carries a cost reference",
+      "description": "Cost-ranked rows without a unit cost cannot be priced.",
+      "message": "observed 1, expected gte 1",
+      "owner": "data engineering",
+      "remediation": "Add unit_cost to the ingredient master."
+    },
+    {
+      "check_id": "dq_dashboard_consistency",
+      "target_model": "mart_metric_registry",
+      "check_type": "consistency",
+      "dimension": "consistency",
+      "severity": "warning",
+      "status": "pass",
+      "observed": 0.0,
+      "threshold": 0.0,
+      "comparison": "every metric the registry promises to the dashboard is displayable",
+      "description": "The registry promises certain metrics to the dashboard. If their trust state no longer allows it, the values are withheld and the promise is out of date.",
+      "message": "all 7 metrics promised to the dashboard are displayable",
+      "owner": "data engineering",
+      "remediation": "Widen the allowed trust states of the metric, or stop promising it in the dashboard."
+    },
+    {
+      "check_id": "dq_dbt_build_clean",
+      "target_model": "dbt",
+      "check_type": "build_integrity",
+      "dimension": "completeness",
+      "severity": "blocker",
+      "status": "pass",
+      "observed": 0.0,
+      "threshold": 0.0,
+      "comparison": "all dbt models built and all dbt tests passed",
+      "description": "A failed model or test means the warehouse does not match the contract.",
+      "message": "all dbt models built and all dbt tests passed",
+      "owner": "data engineering",
+      "remediation": "Re-run dbt build and fix the failing node."
+    },
+    {
+      "check_id": "dq_demand_coverage",
+      "target_model": "mart_waste_priority",
+      "check_type": "coverage",
+      "dimension": "completeness",
+      "severity": "warning",
+      "status": "pass",
+      "observed": 1.0,
+      "threshold": 0.5,
+      "comparison": "demand denominator present for at least half the ranked rows",
+      "description": "A waste rate without a demand denominator is not publishable as a rate.",
+      "message": "observed 1, expected gte 0.5",
+      "owner": "ops analytics",
+      "remediation": "Backfill sales for the affected days or publish the row as unverified."
+    },
+    {
+      "check_id": "dq_fact_sales_unique",
+      "target_model": "fct_sales",
+      "check_type": "uniqueness",
+      "dimension": "completeness",
+      "severity": "blocker",
+      "status": "pass",
+      "observed": 0.0,
+      "threshold": 0.0,
+      "comparison": "no duplicate sale_id",
+      "description": "Every sale line must appear exactly once.",
+      "message": "observed 0, expected eq 0",
+      "owner": "data engineering",
+      "remediation": "Re-run silver dedup on sale_id."
+    },
+    {
+      "check_id": "dq_fact_waste_unique",
+      "target_model": "fct_waste_events",
+      "check_type": "uniqueness",
+      "dimension": "completeness",
+      "severity": "blocker",
+      "status": "pass",
+      "observed": 0.0,
+      "threshold": 0.0,
+      "comparison": "no duplicate waste_id",
+      "description": "Every waste event must appear exactly once.",
+      "message": "observed 0, expected eq 0",
+      "owner": "data engineering",
+      "remediation": "Re-run silver dedup on waste_id."
+    },
+    {
+      "check_id": "dq_freshness_sales",
+      "target_model": "silver.sales",
+      "check_type": "freshness",
+      "dimension": "freshness",
+      "severity": "warning",
+      "status": "pass",
+      "observed": -12.0,
+      "threshold": 2.0,
+      "comparison": "sales data at most 2 days behind the newest event",
+      "description": "Demand denominators must be current or rates are misleading.",
+      "message": "sales covers events and extends 12 day(s) past the newest event",
+      "owner": "ops",
+      "remediation": "Re-run ingestion for the missing days."
+    },
+    {
+      "check_id": "dq_lineage_resolved",
+      "target_model": "dbt",
+      "check_type": "lineage",
+      "dimension": "completeness",
+      "severity": "blocker",
+      "status": "pass",
+      "observed": 0.0,
+      "threshold": 0.0,
+      "comparison": "every published mart resolves to at least one source",
+      "description": "A mart without a resolved source cannot be traced back to a delivery.",
+      "message": "every published mart resolves to at least one source (2 declared model(s) have no delivery upstream)",
+      "owner": "data engineering",
+      "remediation": "Check the model dependencies in the dbt manifest."
+    },
+    {
+      "check_id": "dq_metric_coverage",
+      "target_model": "mart_metric_registry",
+      "check_type": "coverage",
+      "dimension": "completeness",
+      "severity": "warning",
+      "status": "pass",
+      "observed": 0.0,
+      "threshold": 0.0,
+      "comparison": "every published metric is protected by an expectation or a dbt test",
+      "description": "A published metric whose source model nothing tests or checks is a number with no protection. It cannot be shown as measured.",
+      "message": "all 8 published metrics are protected by a declared expectation or a dbt test",
+      "owner": "data engineering",
+      "remediation": "Add a dbt test or a declared expectation for the metric source model."
+    },
+    {
+      "check_id": "dq_metric_registry_complete",
+      "target_model": "mart_metric_registry",
+      "check_type": "completeness",
+      "dimension": "completeness",
+      "severity": "blocker",
+      "status": "pass",
+      "observed": 0.0,
+      "threshold": 0.0,
+      "comparison": "every published metric has a definition, an owner and allowed trust states",
+      "description": "A metric without a definition cannot be trusted or explained.",
+      "message": "observed 0, expected eq 0",
+      "owner": "data engineering",
+      "remediation": "Complete the row in mart_metric_registry."
+    },
+    {
+      "check_id": "dq_no_negative_quantities",
+      "target_model": "fct_waste_events",
+      "check_type": "validity",
+      "dimension": "validity",
+      "severity": "blocker",
+      "status": "pass",
+      "observed": 0.0,
+      "threshold": 0.0,
+      "comparison": "no negative waste quantity",
+      "description": "Negative waste would be a sign inversion.",
+      "message": "observed 0, expected eq 0",
+      "owner": "data engineering",
+      "remediation": "Fix the source record; the contract quarantines these rows."
+    },
+    {
+      "check_id": "dq_quality_rate",
+      "target_model": "silver",
+      "check_type": "quality_rate",
+      "dimension": "completeness",
+      "severity": "warning",
+      "status": "pass",
+      "observed": 0.0,
+      "threshold": 0.02,
+      "comparison": "rejected rows below 2% of the source",
+      "description": "A jump in rejected rows signals a broken upstream delivery.",
+      "message": "worst rejected rate 0.0000% on events, threshold 2.0000%",
+      "owner": "data engineering",
+      "remediation": "Inspect data/quarantine for the affected source."
+    },
+    {
+      "check_id": "dq_reconciliation_waste_cost",
+      "target_model": "mart_waste_priority",
+      "check_type": "reconciliation",
+      "dimension": "completeness",
+      "severity": "blocker",
+      "status": "pass",
+      "observed": 0.0,
+      "threshold": 0.0,
+      "comparison": "mart waste cost equals cost recomputed from source rows",
+      "description": "Cost must be reproducible from the delivered rows and the ingredient master.",
+      "message": "waste_cost: mart 53246.9 vs source 53246.9 (difference 0 NOK)",
+      "owner": "data engineering",
+      "remediation": "Inspect the cost calculation and the ingredient master."
+    },
+    {
+      "check_id": "dq_reconciliation_waste_qty",
+      "target_model": "mart_waste_daily",
+      "check_type": "reconciliation",
+      "dimension": "completeness",
+      "severity": "blocker",
+      "status": "pass",
+      "observed": 0.0,
+      "threshold": 0.0,
+      "comparison": "mart waste quantity equals source waste quantity",
+      "description": "Aggregation must not create or lose waste quantity.",
+      "message": "waste_quantity: mart 296.94 vs source 296.94 (difference 0 kg or units)",
+      "owner": "data engineering",
+      "remediation": "Inspect the aggregation grain in the mart."
+    },
+    {
+      "check_id": "dq_source_freshness",
+      "target_model": "silver",
+      "check_type": "freshness",
+      "dimension": "freshness",
+      "severity": "blocker",
+      "status": "pass",
+      "observed": 0.0834,
+      "threshold": 3.0,
+      "comparison": "no silver source older than 3 days",
+      "description": "A stale silver layer invalidates every downstream metric.",
+      "message": "oldest silver source events is 0.08 days old",
+      "owner": "data engineering",
+      "remediation": "Re-run the ingestion for the stale source."
+    },
+    {
+      "check_id": "dq_summary_cost_matches_priority",
+      "target_model": "mart_food_loss_summary",
+      "check_type": "reconciliation",
+      "dimension": "completeness",
+      "severity": "blocker",
+      "status": "pass",
+      "observed": 2.9103830456733704e-11,
+      "threshold": 0.0,
+      "comparison": "summary waste cost equals the cost of the ranked backlog",
+      "description": "The summary and the ranked backlog must price the same waste.",
+      "message": "observed 2.91038e-11, expected lte 0.01",
+      "owner": "data engineering",
+      "remediation": "Inspect the cost aggregation in mart_food_loss_summary."
+    },
+    {
+      "check_id": "dq_summary_rate_is_ratio_of_totals",
+      "target_model": "mart_food_loss_summary",
+      "check_type": "consistency",
+      "dimension": "consistency",
+      "severity": "blocker",
+      "status": "pass",
+      "observed": 2.5491955646383957e-07,
+      "threshold": 0.0,
+      "comparison": "the published waste rate is a ratio of totals",
+      "description": "The published waste rate must be total waste over total demand. An average of daily ratios is a different number and must never be published under this name.",
+      "message": "observed 2.5492e-07, expected lte 1e-06",
+      "owner": "ops analytics",
+      "remediation": "Recompute the rate in mart_food_loss_summary as a ratio of sums."
+    },
+    {
+      "check_id": "dq_summary_total_reconciles",
+      "target_model": "mart_food_loss_summary",
+      "check_type": "reconciliation",
+      "dimension": "completeness",
+      "severity": "blocker",
+      "status": "pass",
+      "observed": 5.684341886080802e-14,
+      "threshold": 0.0,
+      "comparison": "the estate total equals the sum of the locations",
+      "description": "The \"all\" row of the summary must be the sum of the per-location rows.",
+      "message": "observed 5.68434e-14, expected lte 0.001",
+      "owner": "data engineering",
+      "remediation": "Inspect the estate aggregation in mart_food_loss_summary."
+    },
+    {
+      "check_id": "dq_waste_grain_unique",
+      "target_model": "mart_waste_opportunity",
+      "check_type": "uniqueness",
+      "dimension": "completeness",
+      "severity": "blocker",
+      "status": "pass",
+      "observed": 0.0,
+      "threshold": 0.0,
+      "comparison": "no duplicate grain keys",
+      "description": "Waste opportunity grain (waste_date, location_id, ingredient_id, waste_reason) must be unique.",
+      "message": "observed 0, expected eq 0",
+      "owner": "data engineering",
+      "remediation": "Aggregate to a coarser grain before publishing."
+    },
+    {
+      "check_id": "dq_waste_no_orphans",
+      "target_model": "fct_waste_events",
+      "check_type": "referential_integrity",
+      "dimension": "completeness",
+      "severity": "blocker",
+      "status": "pass",
+      "observed": 0.0,
+      "threshold": 0.0,
+      "comparison": "all waste events resolve to location and ingredient",
+      "description": "Waste events must resolve to a known location, ingredient and cost.",
+      "message": "observed 0, expected eq 0",
+      "owner": "data engineering",
+      "remediation": "Add the missing reference row to the master data source."
+    }
+  ],
+  "metrics": [
+    {
+      "metric_key": "avoidable_cost_share",
+      "metric_name": "Avoidable cost share",
+      "source_model": "mart_food_loss_summary",
+      "measurement_type": "derived",
+      "unit": "percent",
+      "owner": "ops analytics",
+      "caveat": "Avoidability is a policy classification maintained in dim_waste_reason.",
+      "definition": "Share of waste cost whose reason is classified avoidable or potentially avoidable.",
+      "trust_state": "measured",
+      "trust_states_allowed": [
+        "measured",
+        "partial"
+      ],
+      "displayable": true,
+      "trusted": true,
+      "publish_blocked": false,
+      "blocking_checks": [],
+      "warning_checks": [],
+      "protected": true,
+      "lineage": [
+        "ingredients",
+        "inventory_snapshots",
+        "locations",
+        "products",
+        "sales",
+        "waste_events"
+      ]
+    },
+    {
+      "metric_key": "demand_lift_pct",
+      "metric_name": "Demand lift around events",
+      "source_model": "mart_demand_events",
+      "measurement_type": "derived",
+      "unit": "percent",
+      "owner": "demand planning",
+      "caveat": "Measured lift only. Forward-looking events carry no lift value. The demand index counts units sold, so it compares like with like across mixed products.",
+      "definition": "Change in average daily units sold in the 7 days around an event versus the 17 days before it.",
+      "trust_state": "measured",
+      "trust_states_allowed": [
+        "measured"
+      ],
+      "displayable": true,
+      "trusted": true,
+      "publish_blocked": false,
+      "blocking_checks": [],
+      "warning_checks": [],
+      "protected": true,
+      "lineage": [
+        "events",
+        "ingredients",
+        "inventory_snapshots",
+        "locations",
+        "products",
+        "sales",
+        "waste_events"
+      ]
+    },
+    {
+      "metric_key": "expected_attendance",
+      "metric_name": "Expected attendance",
+      "source_model": "fct_demand_events",
+      "measurement_type": "estimated",
+      "unit": "people",
+      "owner": "demand planning",
+      "caveat": "An estimate, not a measurement. Confidence is carried per event.",
+      "definition": "Organiser estimate of event attendance.",
+      "trust_state": "partial",
+      "trust_states_allowed": [
+        "measured",
+        "partial",
+        "unverified"
+      ],
+      "displayable": true,
+      "trusted": true,
+      "publish_blocked": false,
+      "blocking_checks": [],
+      "warning_checks": [],
+      "protected": true,
+      "lineage": [
+        "events",
+        "inventory_snapshots",
+        "sales",
+        "waste_events"
+      ]
+    },
+    {
+      "metric_key": "recommended_order_qty",
+      "metric_name": "Recommended order quantity",
+      "source_model": "mart_purchase_plan",
+      "measurement_type": "estimated",
+      "unit": "units",
+      "owner": "purchasing",
+      "caveat": "Planning heuristic. Not a forecast and not an order commitment.",
+      "definition": "Cover days of average demand minus stock on hand.",
+      "trust_state": "partial",
+      "trust_states_allowed": [
+        "measured",
+        "partial"
+      ],
+      "displayable": true,
+      "trusted": true,
+      "publish_blocked": false,
+      "blocking_checks": [],
+      "warning_checks": [],
+      "protected": true,
+      "lineage": [
+        "events",
+        "ingredients",
+        "inventory_snapshots",
+        "locations",
+        "products",
+        "sales",
+        "waste_events"
+      ]
+    },
+    {
+      "metric_key": "units_sold",
+      "metric_name": "Units sold",
+      "source_model": "fct_sales",
+      "measurement_type": "measured",
+      "unit": "units",
+      "owner": "ops",
+      "caveat": "Point-of-sale system of record.",
+      "definition": "Units of a product sold, as reported by the point-of-sale system.",
+      "trust_state": "measured",
+      "trust_states_allowed": [
+        "measured"
+      ],
+      "displayable": true,
+      "trusted": true,
+      "publish_blocked": false,
+      "blocking_checks": [],
+      "warning_checks": [],
+      "protected": true,
+      "lineage": [
+        "events",
+        "ingredients",
+        "inventory_snapshots",
+        "locations",
+        "products",
+        "sales",
+        "waste_events"
+      ]
+    },
+    {
+      "metric_key": "waste_cost_at_risk",
+      "metric_name": "Waste cost at risk",
+      "source_model": "mart_food_loss_summary",
+      "measurement_type": "derived",
+      "unit": "NOK",
+      "owner": "ops analytics",
+      "caveat": "Cost uses purchase-unit cost, not a landed or net-of-discount cost.",
+      "definition": "Value of avoidable recorded waste priced at purchase-unit cost.",
+      "trust_state": "measured",
+      "trust_states_allowed": [
+        "measured",
+        "partial"
+      ],
+      "displayable": true,
+      "trusted": true,
+      "publish_blocked": false,
+      "blocking_checks": [],
+      "warning_checks": [],
+      "protected": true,
+      "lineage": [
+        "ingredients",
+        "inventory_snapshots",
+        "locations",
+        "products",
+        "sales",
+        "waste_events"
+      ]
+    },
+    {
+      "metric_key": "waste_quantity",
+      "metric_name": "Waste quantity",
+      "source_model": "mart_food_loss_summary",
+      "measurement_type": "measured",
+      "unit": "kg_or_unit",
+      "owner": "ops",
+      "caveat": "Sum of source-recorded quantity from fct_waste_events. No estimation is applied.",
+      "definition": "Quantity of food recorded as wasted, in the unit of the ingredient.",
+      "trust_state": "measured",
+      "trust_states_allowed": [
+        "measured",
+        "partial",
+        "unverified"
+      ],
+      "displayable": true,
+      "trusted": true,
+      "publish_blocked": false,
+      "blocking_checks": [],
+      "warning_checks": [],
+      "protected": true,
+      "lineage": [
+        "ingredients",
+        "inventory_snapshots",
+        "locations",
+        "products",
+        "sales",
+        "waste_events"
+      ]
+    },
+    {
+      "metric_key": "waste_rate_per_demand",
+      "metric_name": "Waste rate per demand",
+      "source_model": "mart_food_loss_summary",
+      "measurement_type": "derived",
+      "unit": "ratio",
+      "owner": "ops analytics",
+      "caveat": "The denominator covers the ingredients that were wasted, not the whole menu. Published only where a demand denominator exists.",
+      "definition": "Total waste quantity divided by the total demand of the same ingredients, on the same days and locations. A ratio of totals, not an average of daily ratios.",
+      "trust_state": "measured",
+      "trust_states_allowed": [
+        "measured"
+      ],
+      "displayable": true,
+      "trusted": true,
+      "publish_blocked": false,
+      "blocking_checks": [],
+      "warning_checks": [],
+      "protected": true,
+      "lineage": [
+        "ingredients",
+        "inventory_snapshots",
+        "locations",
+        "products",
+        "sales",
+        "waste_events"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source": "sales",
+      "entity": "fct_sales",
+      "grain": [
+        "sale_id"
+      ],
+      "contract_version": "2.0.0",
+      "rows_delivered": 1081,
+      "rows_published": 1080,
+      "rows_rejected": 0,
+      "duplicates_removed": 1,
+      "retained_pct": 99.91,
+      "ingested_at": "2026-10-22T12:58:20",
+      "quarantine_errors": 0
+    },
+    {
+      "source": "inventory_snapshots",
+      "entity": "fct_inventory_snapshot",
+      "grain": [
+        "location_id",
+        "snapshot_date",
+        "ingredient_id"
+      ],
+      "contract_version": "2.0.0",
+      "rows_delivered": 1081,
+      "rows_published": 1080,
+      "rows_rejected": 0,
+      "duplicates_removed": 1,
+      "retained_pct": 99.91,
+      "ingested_at": "2026-10-22T12:58:20",
+      "quarantine_errors": 0
+    },
+    {
+      "source": "waste_events",
+      "entity": "fct_waste_events",
+      "grain": [
+        "waste_id"
+      ],
+      "contract_version": "2.0.0",
+      "rows_delivered": 241,
+      "rows_published": 241,
+      "rows_rejected": 0,
+      "duplicates_removed": 0,
+      "retained_pct": 100.0,
+      "ingested_at": "2026-10-22T12:58:20",
+      "quarantine_errors": 0
+    },
+    {
+      "source": "events",
+      "entity": "fct_demand_events",
+      "grain": [
+        "event_id"
+      ],
+      "contract_version": "2.0.0",
+      "rows_delivered": 5,
+      "rows_published": 5,
+      "rows_rejected": 0,
+      "duplicates_removed": 0,
+      "retained_pct": 100.0,
+      "ingested_at": "2026-10-22T12:58:20",
+      "quarantine_errors": 0
+    },
+    {
+      "source": "products",
+      "entity": "dim_product",
+      "grain": [
+        "product_id"
+      ],
+      "contract_version": "2.0.0",
+      "rows_delivered": 8,
+      "rows_published": 8,
+      "rows_rejected": 0,
+      "duplicates_removed": 0,
+      "retained_pct": 100.0,
+      "ingested_at": "2026-10-22T12:58:20",
+      "quarantine_errors": 0
+    },
+    {
+      "source": "ingredients",
+      "entity": "dim_ingredient",
+      "grain": [
+        "ingredient_id"
+      ],
+      "contract_version": "2.0.0",
+      "rows_delivered": 8,
+      "rows_published": 8,
+      "rows_rejected": 0,
+      "duplicates_removed": 0,
+      "retained_pct": 100.0,
+      "ingested_at": "2026-10-22T12:58:20",
+      "quarantine_errors": 0
+    },
+    {
+      "source": "locations",
+      "entity": "dim_location",
+      "grain": [
+        "location_id"
+      ],
+      "contract_version": "2.0.0",
+      "rows_delivered": 3,
+      "rows_published": 3,
+      "rows_rejected": 0,
+      "duplicates_removed": 0,
+      "retained_pct": 100.0,
+      "ingested_at": "2026-10-22T12:58:20",
+      "quarantine_errors": 0
+    }
+  ],
+  "lineage": {
+    "models": {
+      "dim_date": {
+        "depends_on_models": [
+          "stg_events",
+          "stg_inventory_snapshots",
+          "stg_sales",
+          "stg_waste_events"
+        ],
+        "depends_on_sources": [],
+        "materialized": "table",
+        "description": "Conformed calendar. Grain: one row per date. date_key is a DATE."
+      },
+      "dim_ingredient": {
+        "depends_on_models": [
+          "stg_ingredients"
+        ],
+        "depends_on_sources": [],
+        "materialized": "table",
+        "description": "Ingredient dimension with purchase unit and unit cost. Grain: one row per ingredient."
+      },
+      "dim_location": {
+        "depends_on_models": [
+          "stg_locations"
+        ],
+        "depends_on_sources": [],
+        "materialized": "table",
+        "description": "Cafe location dimension. Grain: one row per location."
+      },
+      "dim_product": {
+        "depends_on_models": [
+          "dim_ingredient",
+          "stg_products"
+        ],
+        "depends_on_sources": [],
+        "materialized": "table",
+        "description": "Product dimension. Grain: one row per product."
+      },
+      "dim_waste_reason": {
+        "depends_on_models": [],
+        "depends_on_sources": [],
+        "materialized": "table",
+        "description": "Waste reason dimension. Holds the avoidability policy and the prevention lever. Grain: one row per waste reason."
+      },
+      "fct_demand_events": {
+        "depends_on_models": [
+          "dim_date",
+          "stg_events"
+        ],
+        "depends_on_sources": [],
+        "materialized": "table",
+        "description": "External demand event fact. Grain: one row per event (event_id). Attendance is an estimate, so the row carries a confidence class and a signal weight."
+      },
+      "fct_inventory_snapshot": {
+        "depends_on_models": [
+          "dim_date",
+          "dim_ingredient",
+          "dim_location",
+          "stg_inventory_snapshots"
+        ],
+        "depends_on_sources": [],
+        "materialized": "table",
+        "description": "Inventory snapshot fact. Grain: location + snapshot_date + ingredient. A snapshot is a state, not a movement: summing it across days is invalid."
+      },
+      "fct_sales": {
+        "depends_on_models": [
+          "dim_date",
+          "dim_location",
+          "dim_product",
+          "stg_sales"
+        ],
+        "depends_on_sources": [],
+        "materialized": "table",
+        "description": "Sales fact. Grain: one row per sale line (sale_id). Measures: units_sold, demand_qty. Never aggregate this table directly; use the marts."
+      },
+      "fct_waste_events": {
+        "depends_on_models": [
+          "dim_date",
+          "dim_ingredient",
+          "dim_location",
+          "dim_waste_reason",
+          "stg_waste_events"
+        ],
+        "depends_on_sources": [],
+        "materialized": "table",
+        "description": "Waste fact. Grain: one row per waste event (waste_id). Measures: waste_quantity, estimated_cost. Reference coverage flags stay visible so orphaned rows cannot silently drop out of reporting."
+      },
+      "int_sales_ingredient_demand": {
+        "depends_on_models": [
+          "stg_products",
+          "stg_sales"
+        ],
+        "depends_on_sources": [],
+        "materialized": "view",
+        "description": "Ingredient demand by day, location and ingredient. This is the denominator for waste rates. Grain: sale_date + location_id + ingredient_id."
+      },
+      "int_waste_with_context": {
+        "depends_on_models": [
+          "dim_waste_reason",
+          "int_sales_ingredient_demand",
+          "stg_ingredients",
+          "stg_inventory_snapshots",
+          "stg_waste_events"
+        ],
+        "depends_on_sources": [],
+        "materialized": "view",
+        "description": "Waste enriched with denominators, cost and avoidability. Grain: one row per waste event. Every join uses the full business key, so the model cannot fan out."
+      },
+      "mart_demand_events": {
+        "depends_on_models": [
+          "dim_location",
+          "fct_demand_events",
+          "fct_sales",
+          "int_waste_with_context"
+        ],
+        "depends_on_sources": [],
+        "materialized": "table",
+        "description": "Event impact on local demand and waste. Grain: event_id + location_id. Forward looking events carry a signal but no measured lift."
+      },
+      "mart_dq_expectations": {
+        "depends_on_models": [],
+        "depends_on_sources": [],
+        "materialized": "table",
+        "description": "Declared data quality expectations, versioned with the models they protect. The trust engine evaluates these after every build."
+      },
+      "mart_food_loss_summary": {
+        "depends_on_models": [
+          "dim_location",
+          "int_waste_with_context",
+          "mart_waste_priority"
+        ],
+        "depends_on_sources": [],
+        "materialized": "table",
+        "description": "Estate level food loss summary. Grain: location_id, plus one 'all' row for the estate total. Publishes the ratio of totals for the waste rate, never an average of per-row ratios."
+      },
+      "mart_metric_registry": {
+        "depends_on_models": [],
+        "depends_on_sources": [],
+        "materialized": "table",
+        "description": "Registry of every published metric: definition, source model, measurement type and the trust states in which it may be displayed."
+      },
+      "mart_purchase_plan": {
+        "depends_on_models": [
+          "dim_ingredient",
+          "dim_location",
+          "fct_inventory_snapshot",
+          "int_sales_ingredient_demand",
+          "int_waste_with_context"
+        ],
+        "depends_on_sources": [],
+        "materialized": "table",
+        "description": "Purchase planning aid. Grain: location_id + ingredient_id. Recommendations are explainable heuristics, not forecasts."
+      },
+      "mart_waste_by_category": {
+        "depends_on_models": [
+          "int_waste_with_context"
+        ],
+        "depends_on_sources": [],
+        "materialized": "table",
+        "description": "Waste by ingredient category. Grain: category."
+      },
+      "mart_waste_by_ingredient": {
+        "depends_on_models": [
+          "int_waste_with_context"
+        ],
+        "depends_on_sources": [],
+        "materialized": "table",
+        "description": "Waste by ingredient and location. Grain: ingredient_id + location_id."
+      },
+      "mart_waste_by_reason": {
+        "depends_on_models": [
+          "int_waste_with_context"
+        ],
+        "depends_on_sources": [],
+        "materialized": "table",
+        "description": "Waste by reason. Grain: waste_reason."
+      },
+      "mart_waste_daily": {
+        "depends_on_models": [
+          "int_waste_with_context"
+        ],
+        "depends_on_sources": [],
+        "materialized": "table",
+        "description": "Waste trend series. Grain: waste_date + location_id."
+      },
+      "mart_waste_opportunity": {
+        "depends_on_models": [
+          "int_waste_with_context"
+        ],
+        "depends_on_sources": [],
+        "materialized": "table",
+        "description": "Waste opportunity table. Grain: waste_date + location_id + ingredient_id + waste_reason. Carries coverage ratios so consumers know how much of the row is backed by a denominator."
+      },
+      "mart_waste_priority": {
+        "depends_on_models": [
+          "mart_waste_opportunity"
+        ],
+        "depends_on_sources": [],
+        "materialized": "table",
+        "description": "Ranked prevention backlog. Grain: waste_date + location_id + ingredient_id + waste_reason. Ranked by cost x avoidability x coverage, with a per-row trust state."
+      },
+      "stg_events": {
+        "depends_on_models": [],
+        "depends_on_sources": [
+          "events"
+        ],
+        "materialized": "view",
+        "description": "External demand events. Grain: one row per event."
+      },
+      "stg_ingredients": {
+        "depends_on_models": [],
+        "depends_on_sources": [
+          "ingredients"
+        ],
+        "materialized": "view",
+        "description": "Ingredient master. Grain: one row per ingredient."
+      },
+      "stg_inventory_snapshots": {
+        "depends_on_models": [],
+        "depends_on_sources": [
+          "inventory_snapshots"
+        ],
+        "materialized": "view",
+        "description": "End-of-day stock on hand. Grain: location + date + ingredient."
+      },
+      "stg_locations": {
+        "depends_on_models": [],
+        "depends_on_sources": [
+          "locations"
+        ],
+        "materialized": "view",
+        "description": "Location master. Grain: one row per cafe."
+      },
+      "stg_products": {
+        "depends_on_models": [],
+        "depends_on_sources": [
+          "products"
+        ],
+        "materialized": "view",
+        "description": "Product master. Grain: one row per product."
+      },
+      "stg_sales": {
+        "depends_on_models": [],
+        "depends_on_sources": [
+          "sales"
+        ],
+        "materialized": "view",
+        "description": "Point-of-sale unit counts. Grain: one row per sale line."
+      },
+      "stg_waste_events": {
+        "depends_on_models": [],
+        "depends_on_sources": [
+          "waste_events"
+        ],
+        "materialized": "view",
+        "description": "Recorded waste. Grain: one row per waste event."
+      }
+    },
+    "sources": [
+      "events",
+      "ingredients",
+      "inventory_snapshots",
+      "locations",
+      "products",
+      "sales",
+      "waste_events"
+    ],
+    "generated_at": "2026-10-22T12:58:29+00:00"
+  }
+}
